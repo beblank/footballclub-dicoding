@@ -16,6 +16,8 @@ import android.widget.Toast
 import com.adit.footballclub.R
 import com.adit.footballclub.adapter.ClubAdapter
 import com.adit.footballclub.entity.Events
+import com.adit.footballclub.viewmodel.ActivityMainViewModel
+import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
 import com.adit.footballclub.viewmodel.EventsViewModel
 import com.adit.footballclub.viewmodel.EventsViewModelFactory
 import dagger.android.support.AndroidSupportInjection
@@ -26,7 +28,12 @@ class LastMatchFragment : Fragment() {
 
     @Inject
     lateinit var eventsViewModelFactory: EventsViewModelFactory
+
+    @Inject
+    lateinit var activityMainViewModelFactory: ActivityMainViewModelFactory
+
     lateinit var eventsViewModel: EventsViewModel
+    lateinit var activityMainViewModel: ActivityMainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -43,6 +50,7 @@ class LastMatchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         eventsViewModel = ViewModelProviders.of(this, eventsViewModelFactory).get(EventsViewModel::class.java)
+        activityMainViewModel = ViewModelProviders.of(requireActivity(), activityMainViewModelFactory).get(ActivityMainViewModel::class.java)
         eventsViewModel.getListEvents().observe(this, Observer {
             if (it != null){
                 progressbarLastMatch.visibility = View.GONE
@@ -52,7 +60,13 @@ class LastMatchFragment : Fragment() {
         eventsViewModel.getListEventsError().observe(this, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
-        eventsViewModel.getEvents()
+        activityMainViewModel.getSelectedTab().observe(requireActivity(), Observer {
+            when (it){
+                0 -> eventsViewModel.getLastEvents()
+                1 -> eventsViewModel.getNextEvents()
+            }
+        })
+
         progressbarLastMatch.visibility = View.VISIBLE
     }
 
