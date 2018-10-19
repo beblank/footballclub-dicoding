@@ -1,5 +1,6 @@
 package com.adit.footballclub.entity.repository
 
+import com.adit.footballclub.entity.ListEvent
 import com.adit.footballclub.entity.repository.remote.ApiService
 import io.reactivex.Observable
 import javax.inject.Inject

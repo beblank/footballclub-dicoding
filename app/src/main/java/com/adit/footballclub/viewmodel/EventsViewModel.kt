@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel
 import com.adit.footballclub.Utils.Const
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.entity.repository.EventsRepository
-import com.adit.footballclub.entity.repository.ListEvent
+import com.adit.footballclub.entity.ListEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers

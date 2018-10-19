@@ -3,6 +3,7 @@ package com.adit.footballclub.di
 import android.app.Activity
 import android.app.Application
 import android.support.v4.app.Fragment
+import com.adit.footballclub.Utils.Const
 import com.adit.footballclub.di.component.DaggerAppComponent
 import com.adit.footballclub.di.module.AppModule
 import com.adit.footballclub.di.module.NetModule
@@ -28,7 +29,7 @@ class BaseApplication:Application(), HasActivityInjector, HasSupportFragmentInje
 
         DaggerAppComponent.builder()
                 .appModule(AppModule(this))
-                .netModule(NetModule("https://www.thesportsdb.com/api/v1/json/1/"))
+                .netModule(NetModule(Const.endpoint))
                 .build().inject(this )
 
     }
