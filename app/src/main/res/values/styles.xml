@@ -9,4 +9,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:background">@color/mainToolbar</item>
+        <item name="colorPrimaryDark">@color/mainToolbar</item>
+        <item name="colorPrimary">@color/mainToolbar</item>
+    </style>
+
 </resources>
