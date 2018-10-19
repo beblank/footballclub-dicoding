@@ -17,6 +17,8 @@ import com.adit.footballclub.R
 import com.adit.footballclub.Utils.Const
 import com.adit.footballclub.adapter.ClubAdapter
 import com.adit.footballclub.entity.Events
+import com.adit.footballclub.ext.hide
+import com.adit.footballclub.ext.show
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
 import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
 import com.adit.footballclub.viewmodel.EventsViewModel
@@ -53,8 +55,8 @@ class LastMatchFragment : Fragment() {
         activityMainViewModel = ViewModelProviders.of(requireActivity(), activityMainViewModelFactory).get(ActivityMainViewModel::class.java)
         eventsViewModel.getListEvents().observe(this, Observer {
             if (it != null){
-                progressbarLastMatch.visibility = View.GONE
-                rvClubLast.visibility = View.VISIBLE
+                progressbarLastMatch.hide()
+                rvClubLast.show()
                 initRV(it)
             }
         })
@@ -62,8 +64,8 @@ class LastMatchFragment : Fragment() {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
         activityMainViewModel.getSelectedTab().observe(requireActivity(), Observer {
-            progressbarLastMatch.visibility = View.VISIBLE
-            rvClubLast.visibility = View.GONE
+            progressbarLastMatch.show()
+            rvClubLast.hide()
             eventsViewModel.getEvents(it ?: 0)
         })
         progressbarLastMatch.visibility = View.VISIBLE
