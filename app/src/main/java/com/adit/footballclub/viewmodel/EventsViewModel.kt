@@ -23,7 +23,7 @@ class EventsViewModel @Inject constructor(
     fun getListEvents():MutableLiveData<List<Events>> = listEvents
     fun getListEventsError():MutableLiveData<String> = listEventsError
 
-    fun getEvents(){
+    fun configDisposableObserver(){
         disposableObserver = object :DisposableObserver<ListEvent>(){
 
             override fun onComplete() {
@@ -37,12 +37,24 @@ class EventsViewModel @Inject constructor(
                 listEventsError.value = e.message
             }
         }
+    }
+
+    fun getLastEvents(){
         eventsRepository.getLastEvents(Const.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(disposableObserver)
 
     }
+
+    fun getNextEvents(){
+        eventsRepository.getLastEvents(Const.id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(disposableObserver)
+    }
+
+
 
     fun disposeElements(){
         if (null != disposableObserver && disposableObserver.isDisposed) disposableObserver.dispose()

@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface ApiService{
     @GET("eventspastleague.php")
-    fun getLastmatch(@Query("id") id:String) : Observable<ListEvent>
+    fun getLastMatch(@Query("id") id:String) : Observable<ListEvent>
 
     @GET("eventsnextleague.php")
     fun getNextMatch(@Query("id") id:String) : Observable<ListEvent>
