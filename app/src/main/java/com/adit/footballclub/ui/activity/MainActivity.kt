@@ -15,6 +15,7 @@ import android.util.Log
 import com.adit.footballclub.ui.fragment.LastMatchFragment
 import com.adit.footballclub.R
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
+import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
 import com.adit.footballclub.viewmodel.EventsViewModelFactory
 import javax.inject.Inject
 
@@ -22,7 +23,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
 
     @Inject
-    lateinit var activityMaiViewModelFactory: EventsViewModelFactory
+    lateinit var activityMaiViewModelFactory: ActivityMainViewModelFactory
 
     lateinit var activityMainViewModel: ActivityMainViewModel
 

@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.adit.footballclub.R
+import com.adit.footballclub.Utils.Const
 import com.adit.footballclub.adapter.ClubAdapter
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
@@ -61,12 +62,11 @@ class LastMatchFragment : Fragment() {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
         activityMainViewModel.getSelectedTab().observe(requireActivity(), Observer {
-            when (it){
-                0 -> eventsViewModel.getLastEvents()
-                1 -> eventsViewModel.getNextEvents()
+            when (it) {
+                Const.lastMatchTab -> eventsViewModel.getLastEvents()
+                Const.nextMatchTab -> eventsViewModel.getNextEvents()
             }
         })
-
         progressbarLastMatch.visibility = View.VISIBLE
     }
 

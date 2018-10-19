@@ -40,6 +40,7 @@ class EventsViewModel @Inject constructor(
     }
 
     fun getLastEvents(){
+        configDisposableObserver()
         eventsRepository.getLastEvents(Const.id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
