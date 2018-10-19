@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
     override fun onTabUnselected(p0: TabLayout.Tab?) {}
 
     override fun onTabSelected(tab: TabLayout.Tab) {
-
         activityMainViewModel.getSelectedTab().value = tab.position
 
         //when(tab.position) {

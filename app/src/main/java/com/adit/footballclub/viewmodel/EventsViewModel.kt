@@ -9,6 +9,7 @@ import com.adit.footballclub.entity.ListEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class EventsViewModel @Inject constructor(
@@ -23,7 +24,7 @@ class EventsViewModel @Inject constructor(
     fun getListEvents():MutableLiveData<List<Events>> = listEvents
     fun getListEventsError():MutableLiveData<String> = listEventsError
 
-    fun configDisposableObserver(){
+    fun getEvents(tabs:Int){
         disposableObserver = object :DisposableObserver<ListEvent>(){
 
             override fun onComplete() {
@@ -37,25 +38,14 @@ class EventsViewModel @Inject constructor(
                 listEventsError.value = e.message
             }
         }
-    }
 
-    fun getLastEvents(){
-        configDisposableObserver()
-        eventsRepository.getLastEvents(Const.id)
+        eventsRepository.getEvents(Const.id, tabs)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .debounce(1, TimeUnit.SECONDS)
                 .subscribe(disposableObserver)
 
     }
-
-    fun getNextEvents(){
-        eventsRepository.getLastEvents(Const.id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(disposableObserver)
-    }
-
-
 
     fun disposeElements(){
         if (null != disposableObserver && disposableObserver.isDisposed) disposableObserver.dispose()

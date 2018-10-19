@@ -49,12 +49,12 @@ class LastMatchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         eventsViewModel = ViewModelProviders.of(this, eventsViewModelFactory).get(EventsViewModel::class.java)
         activityMainViewModel = ViewModelProviders.of(requireActivity(), activityMainViewModelFactory).get(ActivityMainViewModel::class.java)
         eventsViewModel.getListEvents().observe(this, Observer {
             if (it != null){
                 progressbarLastMatch.visibility = View.GONE
+                rvClubLast.visibility = View.VISIBLE
                 initRV(it)
             }
         })
@@ -62,10 +62,9 @@ class LastMatchFragment : Fragment() {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
         activityMainViewModel.getSelectedTab().observe(requireActivity(), Observer {
-            when (it) {
-                Const.lastMatchTab -> eventsViewModel.getLastEvents()
-                Const.nextMatchTab -> eventsViewModel.getNextEvents()
-            }
+            progressbarLastMatch.visibility = View.VISIBLE
+            rvClubLast.visibility = View.GONE
+            eventsViewModel.getEvents(it ?: 0)
         })
         progressbarLastMatch.visibility = View.VISIBLE
     }
