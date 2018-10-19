@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.adit.footballclub.adapter.ClubAdapter
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.viewmodel.EventsViewModel
@@ -48,13 +49,14 @@ class LastMatchFragment : Fragment() {
             }
         })
         eventsViewModel.getListEventsError().observe(this, Observer {
-            Log.d("dodol", "$it")
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
         eventsViewModel.getEvents()
         progressbarLastMatch.visibility = View.VISIBLE
     }
 
     private fun initRV(it: List<Events>) {
+        Log.d("dodol", "$it")
         rvClubLast.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         rvClubLast.adapter = ClubAdapter(it)
     }

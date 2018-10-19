@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.adit.footballclub.R
+import com.adit.footballclub.Utils.Utils
 import com.adit.footballclub.entity.Events
 import kotlinx.android.synthetic.main.match_item.view.*
 
@@ -22,7 +23,7 @@ class ClubAdapter(val eventList:List<Events>):RecyclerView.Adapter<ClubAdapter.V
     class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
 
         fun bind(event:Events){
-            itemView.txt_date.text = event.date
+            itemView.txt_date.text = Utils.dateStringConverter(event.dateStr)
             itemView.txt_home_name.text = event.nameHomeTeam
             itemView.txt_home_score.text = event.homeScore
             itemView.txt_away_name.text = event.nameAwayTeam
