@@ -1,5 +1,6 @@
 package com.adit.footballclub.ui.activity
 
+import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -11,13 +12,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.util.Log
-import com.adit.footballclub.LastMatchFragment
-import com.adit.footballclub.NextMatchFragment
+import com.adit.footballclub.ui.fragment.LastMatchFragment
 import com.adit.footballclub.R
+import com.adit.footballclub.viewmodel.ActivityMainViewModel
+import com.adit.footballclub.viewmodel.EventsViewModelFactory
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
 
+    @Inject
+    lateinit var activityMaiViewModelFactory: EventsViewModelFactory
+
+    lateinit var activityMainViewModel: ActivityMainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +39,8 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         AndroidInjection.inject(this)
 
         tabs.addOnTabSelectedListener(this)
+
+        activityMainViewModel = ViewModelProviders.of(this, activityMaiViewModelFactory).get(ActivityMainViewModel::class.java)
     }
 
     override fun onTabReselected(tab: TabLayout.Tab) {}
@@ -39,10 +48,13 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
     override fun onTabUnselected(p0: TabLayout.Tab?) {}
 
     override fun onTabSelected(tab: TabLayout.Tab) {
-        when(tab.position) {
-            0 -> Log.d("dodol", "last match")
-            1 -> Log.d("dodol", "next match")
-        }
+
+        activityMainViewModel.getSelectedTab().value = tab.position
+
+        //when(tab.position) {
+        //    0 -> activityMainViewModel.getSelectedTab().value = tab.position
+        //    1 -> Log.d("dodol", "next match")
+        //}
     }
 
     private fun setupViewPager(viewpager: ViewPager) {

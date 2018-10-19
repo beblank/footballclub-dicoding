@@ -1,4 +1,4 @@
-package com.adit.footballclub
+package com.adit.footballclub.ui.fragment
 
 
 import android.arch.lifecycle.Observer
@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.adit.footballclub.R
 import com.adit.footballclub.adapter.ClubAdapter
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.viewmodel.EventsViewModel

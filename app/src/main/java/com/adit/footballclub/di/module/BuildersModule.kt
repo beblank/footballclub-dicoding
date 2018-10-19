@@ -1,6 +1,6 @@
 package com.adit.footballclub.di.module
 
-import com.adit.footballclub.LastMatchFragment
+import com.adit.footballclub.ui.fragment.LastMatchFragment
 import com.adit.footballclub.ui.activity.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -11,6 +11,6 @@ abstract class BuildersModule{
     abstract fun contributeMainActivity():MainActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeLastMatchFragment():LastMatchFragment
+    abstract fun contributeLastMatchFragment(): LastMatchFragment
 }
 
