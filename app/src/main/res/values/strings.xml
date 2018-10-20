@@ -6,14 +6,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="vs">VS</string>
-
-    <string-array name="attrib">
-        <item>VS</item>
-        <item>line</item>
-        <item>Goals</item>
-        <item>Shots</item>
-        <item>line</item>
-        <item>Lineups</item>
-
-    </string-array>
+    <string name="goals">Goals</string>
+    <string name="shots">Shots</string>
 </resources>

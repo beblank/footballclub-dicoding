@@ -2,13 +2,11 @@ package com.adit.footballclub.ui.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import com.adit.footballclub.R
 import com.adit.footballclub.Utils.Const
-import com.adit.footballclub.adapter.DetailAdapter
+import com.adit.footballclub.Utils.Utils
 import com.adit.footballclub.entity.Events
-import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.match_detail_header_item.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -17,12 +15,15 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
 
         val event = intent.getParcelableExtra<Events>(Const.event)
-        rvDetailMatch.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        rvDetailMatch.adapter = DetailAdapter(resources.getStringArray(R.array.attrib),
-                hashMapOf(Const.date to event.dateStr,
-                        Const.home to event.nameHomeTeam,
-                        Const.away to event.nameAwayTeam,
-                        Const.awayScore to event.awayScore,
-                        Const.homeScore to event.homeScore))
+
+        initView(event)
+    }
+
+    private fun initView(event: Events) {
+        txt_home_name.text = event.nameHomeTeam
+        txt_home_score.text = event.homeScore
+        txt_away_name.text = event.nameAwayTeam
+        txt_away_score.text = event.awayScore
+        txt_date.text = Utils.dateStringConverter(event.dateStr)
     }
 }

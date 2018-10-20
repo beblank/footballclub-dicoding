@@ -6,4 +6,5 @@
     <dimen name="img_size">100dp</dimen>
     <dimen name="h2_margin">16dp</dimen>
     <dimen name="small_margin">8dp</dimen>
+    <dimen name="header_height">200dp</dimen>
 </resources>
