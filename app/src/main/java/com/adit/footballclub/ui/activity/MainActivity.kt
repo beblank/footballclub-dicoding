@@ -48,11 +48,6 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
 
     override fun onTabSelected(tab: TabLayout.Tab) {
         activityMainViewModel.getSelectedTab().value = tab.position
-
-        //when(tab.position) {
-        //    0 -> activityMainViewModel.getSelectedTab().value = tab.position
-        //    1 -> Log.d("dodol", "next match")
-        //}
     }
 
     private fun setupViewPager(viewpager: ViewPager) {
