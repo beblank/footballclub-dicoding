@@ -16,19 +16,30 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="2dp"
-            android:background="#c0c0c0"/>
+            android:layout_height="@dimen/line_height"
+            android:background="@color/lineBackground"/>
 
-        <include
-                layout="@layout/item_detail_goals" />
+        <include layout="@layout/item_detail_goals" />
 
-        <include
-                layout="@layout/item_detail_shots" />
+        <include layout="@layout/item_detail_shots" />
 
         <View
                 android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:background="#c0c0c0"/>
+                android:layout_height="@dimen/line_height"
+                android:background="@color/lineBackground"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textSize="@dimen/text_h2_size"
+                  android:textStyle="bold"
+                  android:text="@string/lineups"
+                  android:layout_gravity="center_horizontal"
+        />
+
+        <include layout="@layout/item_detail_goalkeeper" />
+        <include layout="@layout/item_detail_defense" />
+        <include layout="@layout/item_detail_midfield" />
+        <include layout="@layout/item_detail_forward" />
+        <include layout="@layout/item_detail_substitutes" />
 
 
     </LinearLayout>

@@ -6,6 +6,9 @@
     <TextView
             android:id="@+id/txt_away_forward"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:textSize="@dimen/text_h2_size"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -13,7 +16,9 @@
     <TextView
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="@string/forward"
-            android:layout_marginStart="@dimen/small_margin"
+            android:textSize="@dimen/text_h2_size"
+            android:textStyle="bold"
+            android:textColor="@color/h2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -22,6 +27,8 @@
     <TextView
             android:id="@+id/txt_home_forward"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textSize="@dimen/text_h2_size"
+            android:textStyle="bold"
             android:layout_marginEnd="@dimen/small_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
