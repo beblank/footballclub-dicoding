@@ -1,5 +1,7 @@
 package com.adit.footballclub.entity
 
+import com.google.gson.annotations.SerializedName
+
 data class Team(
-        val id:String
+        @SerializedName("strTeamBadge") val logo:String
 )

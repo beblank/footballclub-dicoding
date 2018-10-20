@@ -3,6 +3,7 @@ package com.adit.footballclub.di.module
 import android.app.Application
 import android.arch.lifecycle.ViewModelProvider
 import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
+import com.adit.footballclub.viewmodel.DetailActivityViewModelFactory
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -16,5 +17,9 @@ class AppModule(val app:Application){
     @Provides
     @Singleton
     fun provideActivityMainViewModelFactory(factory:ActivityMainViewModelFactory):ViewModelProvider.Factory = factory
+
+    @Provides
+    @Singleton
+    fun provideDetailActivityViewModelFactory(factory: DetailActivityViewModelFactory):ViewModelProvider.Factory = factory
 
 }

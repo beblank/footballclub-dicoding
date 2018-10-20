@@ -1,6 +1,7 @@
 package com.adit.footballclub.entity.repository.remote
 
 import com.adit.footballclub.entity.ListEvent
+import com.adit.footballclub.entity.ListTeam
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,5 +13,6 @@ interface ApiService{
     @GET("eventsnextleague.php")
     fun getNextMatch(@Query("id") id:String) : Observable<ListEvent>
 
-
+    @GET("lookupteam.php")
+    fun getTeamDetail(@Query("id") id:String) : Observable<ListTeam>
 }
