@@ -18,6 +18,11 @@ class DetailActivity : AppCompatActivity() {
 
         val event = intent.getParcelableExtra<Events>(Const.event)
         rvDetailMatch.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        rvDetailMatch.adapter = DetailAdapter(resources.getStringArray(R.array.attrib), event)
+        rvDetailMatch.adapter = DetailAdapter(resources.getStringArray(R.array.attrib),
+                hashMapOf(Const.date to event.dateStr,
+                        Const.home to event.nameHomeTeam,
+                        Const.away to event.nameAwayTeam,
+                        Const.awayScore to event.awayScore,
+                        Const.homeScore to event.homeScore))
     }
 }

@@ -7,5 +7,13 @@ class Const{
         val lastMatchTab = 0
         val nextMatchTab = 1
         val event = "event"
+        val away = "away"
+        val home = "home"
+        val homeScore = "homeScore"
+        val awayScore = "awayScore"
+        val awayImg = "awayImg"
+        val homeImg = "homeImg"
+        val date = "date"
+
     }
 }
