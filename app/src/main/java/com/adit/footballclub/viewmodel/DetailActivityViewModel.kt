@@ -6,6 +6,8 @@ import com.adit.footballclub.entity.ListTeam
 import com.adit.footballclub.entity.Team
 import com.adit.footballclub.entity.repository.TeamRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -13,32 +15,35 @@ import javax.inject.Inject
 class DetailActivityViewModel @Inject constructor(
         val teamRepository: TeamRepository):ViewModel(){
 
-    private val listTeam:MutableLiveData<ListTeam> = MutableLiveData()
+    private val listHomeTeam:MutableLiveData<Team> = MutableLiveData()
+    private val listAwayTeam:MutableLiveData<Team> = MutableLiveData()
     private val listTeamError:MutableLiveData<String> = MutableLiveData()
 
-    lateinit var disposableObserver: DisposableObserver<ListTeam>
+    val compositeDisposable = CompositeDisposable()
 
     fun getListTeamError():MutableLiveData<String> = listTeamError
-    fun getListTeam():MutableLiveData<ListTeam> = listTeam
+    fun getListHomeTeam():MutableLiveData<Team> = listHomeTeam
+    fun getListAwayTeam():MutableLiveData<Team> = listHomeTeam
 
-    fun getTeams(id:String){
-        disposableObserver = object : DisposableObserver<ListTeam>(){
-
-            override fun onComplete() {
-            }
-
-            override fun onNext(t: ListTeam) {
-                listTeam.value = t
-            }
-
-            override fun onError(e: Throwable) {
-                listTeamError.value = e.message
-            }
-        }
-
-        teamRepository.getTeamDetail(id)
+    fun getAwayTeams(id:String){
+        compositeDisposable.add(teamRepository.getTeamDetail(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(disposableObserver)
+                .subscribe {
+                    listAwayTeam.value = it.teams[0]
+                })
+    }
+
+    fun getHomeTeams(id:String){
+        compositeDisposable.add(teamRepository.getTeamDetail(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    listHomeTeam.value = it.teams[0]
+                })
+    }
+
+    fun disposeElements(){
+        compositeDisposable.clear()
     }
 }
