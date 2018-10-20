@@ -5,10 +5,9 @@
                                              xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
             android:id="@+id/txt_away_substitutes"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_width="@dimen/item_detail_text_width" android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
-            android:textSize="@dimen/text_h2_size"
-            android:textStyle="bold"
+            android:textSize="@dimen/text_h3_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -16,8 +15,7 @@
     <TextView
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="@string/substitutes"
-            android:textSize="@dimen/text_h2_size"
-            android:textStyle="bold"
+            android:textSize="@dimen/text_h3_size"
             android:textColor="@color/h2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,10 +24,9 @@
 
     <TextView
             android:id="@+id/txt_home_substitutes"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_width="@dimen/item_detail_text_width" android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/small_margin"
-            android:textSize="@dimen/text_h2_size"
-            android:textStyle="bold"
+            android:textSize="@dimen/text_h3_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
