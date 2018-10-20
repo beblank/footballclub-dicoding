@@ -1,11 +1,18 @@
 package com.adit.footballclub.ui.activity
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.adit.footballclub.R
 import com.adit.footballclub.Utils.Const
 import com.adit.footballclub.Utils.Utils
 import com.adit.footballclub.entity.Events
+import com.adit.footballclub.viewmodel.DetailActivityViewModel
+import com.adit.footballclub.viewmodel.DetailActivityViewModelFactory
+import com.squareup.picasso.Picasso
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.item_detail_defense.*
 import kotlinx.android.synthetic.main.item_detail_forward.*
 import kotlinx.android.synthetic.main.item_detail_goalkeeper.*
@@ -14,14 +21,43 @@ import kotlinx.android.synthetic.main.item_detail_midfield.*
 import kotlinx.android.synthetic.main.item_detail_shots.*
 import kotlinx.android.synthetic.main.item_detail_substitutes.*
 import kotlinx.android.synthetic.main.match_detail_header_item.*
+import javax.inject.Inject
 
 class DetailActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var detailActivityViewModelFactory:DetailActivityViewModelFactory
+
+    lateinit var detailActivityViewModel: DetailActivityViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        AndroidInjection.inject(this)
 
         val event = intent.getParcelableExtra<Events>(Const.event)
+
+        detailActivityViewModel = ViewModelProviders.of(this, detailActivityViewModelFactory)
+                .get(DetailActivityViewModel::class.java)
+
+        detailActivityViewModel.getListAwayTeam().observe(this, Observer{
+            if (it != null){
+                Picasso.get().load(it.logo).into(img_away)
+            }
+        })
+        detailActivityViewModel.getListHomeTeam().observe(this, Observer{
+            if (it != null){
+                Picasso.get().load(it.logo).into(img_home)
+            }
+        })
+        detailActivityViewModel.getListTeamError().observe(this, Observer {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        })
+
+        detailActivityViewModel.getAwayTeams(event.idAway)
+        detailActivityViewModel.getHomeTeams(event.idHome)
+
 
         initView(event)
     }

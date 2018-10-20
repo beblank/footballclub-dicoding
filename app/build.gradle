@@ -63,5 +63,8 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
     //Anko
     implementation "org.jetbrains.anko:anko-commons:${rootProject.ext.ankoVersion}"
+    //Picasso
+    implementation "com.squareup.picasso:picasso:${rootProject.ext.picassoVersion}"
+
 
 }

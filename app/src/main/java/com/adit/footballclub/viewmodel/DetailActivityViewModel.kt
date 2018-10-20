@@ -23,7 +23,7 @@ class DetailActivityViewModel @Inject constructor(
 
     fun getListTeamError():MutableLiveData<String> = listTeamError
     fun getListHomeTeam():MutableLiveData<Team> = listHomeTeam
-    fun getListAwayTeam():MutableLiveData<Team> = listHomeTeam
+    fun getListAwayTeam():MutableLiveData<Team> = listAwayTeam
 
     fun getAwayTeams(id:String){
         compositeDisposable.add(teamRepository.getTeamDetail(id)
