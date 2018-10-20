@@ -11,12 +11,10 @@ import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.util.Log
 import com.adit.footballclub.ui.fragment.LastMatchFragment
 import com.adit.footballclub.R
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
 import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
-import com.adit.footballclub.viewmodel.EventsViewModelFactory
 import javax.inject.Inject
 
 

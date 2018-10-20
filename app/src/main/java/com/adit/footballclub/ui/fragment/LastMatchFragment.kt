@@ -14,15 +14,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.adit.footballclub.R
-import com.adit.footballclub.Utils.Const
 import com.adit.footballclub.adapter.ClubAdapter
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.ext.hide
 import com.adit.footballclub.ext.show
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
 import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
-import com.adit.footballclub.viewmodel.EventsViewModel
-import com.adit.footballclub.viewmodel.EventsViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_last_match.*
 import javax.inject.Inject
@@ -30,12 +27,8 @@ import javax.inject.Inject
 class LastMatchFragment : Fragment() {
 
     @Inject
-    lateinit var eventsViewModelFactory: EventsViewModelFactory
-
-    @Inject
     lateinit var activityMainViewModelFactory: ActivityMainViewModelFactory
 
-    lateinit var eventsViewModel: EventsViewModel
     lateinit var activityMainViewModel: ActivityMainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -51,22 +44,21 @@ class LastMatchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        eventsViewModel = ViewModelProviders.of(this, eventsViewModelFactory).get(EventsViewModel::class.java)
         activityMainViewModel = ViewModelProviders.of(requireActivity(), activityMainViewModelFactory).get(ActivityMainViewModel::class.java)
-        eventsViewModel.getListEvents().observe(this, Observer {
+        activityMainViewModel.getListEvents().observe(this, Observer {
             if (it != null){
                 progressbarLastMatch.hide()
                 rvClubLast.show()
                 initRV(it)
             }
         })
-        eventsViewModel.getListEventsError().observe(this, Observer {
+        activityMainViewModel.getListEventsError().observe(this, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
         activityMainViewModel.getSelectedTab().observe(requireActivity(), Observer {
             progressbarLastMatch.show()
             rvClubLast.hide()
-            eventsViewModel.getEvents(it ?: 0)
+            activityMainViewModel.getEvents(it ?: 0)
         })
         progressbarLastMatch.visibility = View.VISIBLE
     }
@@ -79,6 +71,6 @@ class LastMatchFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        eventsViewModel.disposeElements()
+        activityMainViewModel.disposeElements()
     }
 }
