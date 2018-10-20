@@ -1,7 +1,10 @@
 package com.adit.footballclub.entity
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Events(
     @SerializedName("strDate") val dateStr:String,
     @SerializedName("strHomeTeam") val nameHomeTeam: String,
@@ -22,5 +25,4 @@ data class Events(
     @SerializedName("strHomeLineupGoalkeeper") val homeLineupGoalkeeper: String,
     @SerializedName("strHomeLineupMidfield") val homeLineupMidfield: String,
     @SerializedName("strHomeLineupSubstitutes") val homeLineupSubstitutes: String
-
-)
+):Parcelable
