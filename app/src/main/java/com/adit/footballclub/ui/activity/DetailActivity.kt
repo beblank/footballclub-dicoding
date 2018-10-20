@@ -70,7 +70,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setToolbar() {
         setSupportActionBar(toolbar)
-        toolbar.setTitle(R.string.detail_title)
+        supportActionBar?.setTitle(R.string.detail_title)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
         toolbar.setNavigationOnClickListener {
             finish()

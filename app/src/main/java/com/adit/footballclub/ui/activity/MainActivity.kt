@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
-        toolbar.setTitle(R.string.main_title)
+        supportActionBar?.setTitle(R.string.main_title)
 
         setupViewPager(viewpager)
 

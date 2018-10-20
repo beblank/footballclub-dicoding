@@ -9,6 +9,10 @@
             android:id="@+id/txt_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/text_h2_size"
+            android:textStyle="bold"
+            android:textColor="@color/h2"
+            android:paddingTop="@dimen/h2_margin"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
