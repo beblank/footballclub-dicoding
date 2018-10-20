@@ -1,7 +1,8 @@
-package com.adit.footballclub
+package com.adit.footballclub.ui.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.adit.footballclub.R
 
 class DetailActivity : AppCompatActivity() {
 

@@ -4,10 +4,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.adit.footballclub.ui.activity.DetailActivity
 import com.adit.footballclub.R
+import com.adit.footballclub.Utils.Const
 import com.adit.footballclub.Utils.Utils
 import com.adit.footballclub.entity.Events
 import kotlinx.android.synthetic.main.match_item.view.*
+import org.jetbrains.anko.*
 
 class ClubAdapter(val eventList:List<Events>):RecyclerView.Adapter<ClubAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)=
@@ -28,7 +31,13 @@ class ClubAdapter(val eventList:List<Events>):RecyclerView.Adapter<ClubAdapter.V
             itemView.txt_home_score.text = event.homeScore
             itemView.txt_away_name.text = event.nameAwayTeam
             itemView.txt_away_score.text = event.awayScore
+
+            itemView.setOnClickListener {
+                itemView.context.startActivity<DetailActivity>(Const.event to event)
+            }
         }
+
+
     }
 
 }

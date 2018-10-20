@@ -58,5 +58,7 @@ dependencies {
     //RxJava RxAndroid
     implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJava2Version}"
     implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
+    //Anko
+    implementation "org.jetbrains.anko:anko-commons:${rootProject.ext.ankoVersion}"
 
 }
