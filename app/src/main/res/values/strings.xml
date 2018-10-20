@@ -8,4 +8,9 @@
     <string name="vs">VS</string>
     <string name="goals">Goals</string>
     <string name="shots">Shots</string>
+    <string name="substitutes">Substitutes</string>
+    <string name="midfield">Midfield</string>
+    <string name="goalkeeper">Goalkeeper</string>
+    <string name="forward">Forward</string>
+    <string name="defense">Defense</string>
 </resources>
