@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+        toolbar.setTitle(R.string.main_title)
 
         setupViewPager(viewpager)
 

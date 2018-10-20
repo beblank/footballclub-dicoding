@@ -13,6 +13,7 @@ import com.adit.footballclub.viewmodel.DetailActivityViewModel
 import com.adit.footballclub.viewmodel.DetailActivityViewModelFactory
 import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
+import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.item_detail_defense.*
 import kotlinx.android.synthetic.main.item_detail_forward.*
 import kotlinx.android.synthetic.main.item_detail_goalkeeper.*
@@ -38,6 +39,14 @@ class DetailActivity : AppCompatActivity() {
 
         val event = intent.getParcelableExtra<Events>(Const.event)
 
+        setToolbar()
+        setViewModel(event)
+
+
+        initView(event)
+    }
+
+    private fun setViewModel(event: Events) {
         detailActivityViewModel = ViewModelProviders.of(this, detailActivityViewModelFactory)
                 .get(DetailActivityViewModel::class.java)
 
@@ -57,9 +66,15 @@ class DetailActivity : AppCompatActivity() {
 
         detailActivityViewModel.getAwayTeams(event.idAway)
         detailActivityViewModel.getHomeTeams(event.idHome)
+    }
 
-
-        initView(event)
+    private fun setToolbar() {
+        setSupportActionBar(toolbar)
+        toolbar.setTitle(R.string.detail_title)
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
     private fun initView(event: Events) {

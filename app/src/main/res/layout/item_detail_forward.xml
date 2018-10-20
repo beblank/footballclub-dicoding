@@ -31,6 +31,7 @@
             android:layout_width="@dimen/item_detail_text_width" android:layout_height="wrap_content"
             android:textSize="@dimen/text_h3_size"
             android:layout_marginEnd="@dimen/small_margin"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

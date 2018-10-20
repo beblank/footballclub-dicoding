@@ -32,6 +32,8 @@
             android:id="@+id/txt_home_goals"
             android:layout_width="150dp" android:layout_height="wrap_content"
             android:textSize="@dimen/text_h3_size"
+            android:textAlignment="textEnd"
+            android:paddingEnd="@dimen/very_small_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
