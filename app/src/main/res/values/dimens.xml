@@ -7,6 +7,7 @@
     <dimen name="img_size">100dp</dimen>
     <dimen name="h2_margin">16dp</dimen>
     <dimen name="small_margin">8dp</dimen>
+    <dimen name="very_small_margin">5dp</dimen>
     <dimen name="header_height">200dp</dimen>
     <dimen name="line_height">2dp</dimen>
     <dimen name="item_detail_text_width">150dp</dimen>

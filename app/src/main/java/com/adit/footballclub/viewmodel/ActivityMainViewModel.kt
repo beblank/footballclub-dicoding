@@ -10,6 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class ActivityMainViewModel @Inject constructor(
     val eventsRepository: EventsRepository):ViewModel(){
@@ -26,6 +27,7 @@ class ActivityMainViewModel @Inject constructor(
     fun getListEvents():MutableLiveData<List<Events>> = listEvents
     fun getListEventsError():MutableLiveData<String> = listEventsError
 
+    @Singleton
     fun getEvents(tabs:Int){
         disposableObserver = object : DisposableObserver<ListEvent>(){
 

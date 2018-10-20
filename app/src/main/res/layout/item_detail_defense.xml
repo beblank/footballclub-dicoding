@@ -2,6 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              android:layout_width="match_parent"
                                              android:layout_height="wrap_content"
+                                             android:paddingLeft="@dimen/very_small_margin"
+                                             android:paddingRight="@dimen/very_small_margin"
+                                             android:paddingTop="@dimen/h2_margin"
+                                             android:paddingBottom="@dimen/h2_margin"
                                              xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
             android:id="@+id/txt_away_defense"
