@@ -1,4 +1,4 @@
-package com.adit.footballclub.Utils
+package com.adit.footballclub.utils
 
 import java.text.SimpleDateFormat
 

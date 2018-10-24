@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.adit.footballclub.R
-import com.adit.footballclub.Utils.Const
-import com.adit.footballclub.Utils.Utils
+import com.adit.footballclub.utils.Const
+import com.adit.footballclub.utils.Utils
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.viewmodel.DetailActivityViewModel
 import com.adit.footballclub.viewmodel.DetailActivityViewModelFactory

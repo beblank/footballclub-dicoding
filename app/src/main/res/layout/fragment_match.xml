@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.LastMatchFragment">
+    tools:context=".ui.fragment.MatchFragment">
 
     <ProgressBar
         android:id="@+id/progressbarLastMatch"

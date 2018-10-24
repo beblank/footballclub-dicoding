@@ -11,8 +11,8 @@ import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.adit.footballclub.ui.fragment.LastMatchFragment
 import com.adit.footballclub.R
+import com.adit.footballclub.ui.fragment.MatchFragment
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
 import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
 import javax.inject.Inject
@@ -52,8 +52,8 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
 
     private fun setupViewPager(viewpager: ViewPager) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(LastMatchFragment(), resources.getString(R.string.last_match))
-        adapter.addFragment(LastMatchFragment(), resources.getString(R.string.next_match))
+        adapter.addFragment(MatchFragment(), resources.getString(R.string.last_match))
+        adapter.addFragment(MatchFragment(), resources.getString(R.string.next_match))
         viewpager.setAdapter(adapter)
     }
 

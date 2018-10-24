@@ -21,10 +21,10 @@ import com.adit.footballclub.ext.show
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
 import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_last_match.*
+import kotlinx.android.synthetic.main.fragment_match.*
 import javax.inject.Inject
 
-class LastMatchFragment : Fragment() {
+class MatchFragment : Fragment() {
 
     @Inject
     lateinit var activityMainViewModelFactory: ActivityMainViewModelFactory
@@ -34,7 +34,7 @@ class LastMatchFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_last_match, container, false)
+        return inflater.inflate(R.layout.fragment_match, container, false)
     }
 
     override fun onAttach(context: Context?) {

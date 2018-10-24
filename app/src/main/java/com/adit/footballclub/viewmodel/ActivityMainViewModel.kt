@@ -2,7 +2,7 @@ package com.adit.footballclub.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.adit.footballclub.Utils.Const
+import com.adit.footballclub.utils.Const
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.entity.ListEvent
 import com.adit.footballclub.entity.repository.EventsRepository

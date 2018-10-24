@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.adit.footballclub.ui.activity.DetailActivity
 import com.adit.footballclub.R
-import com.adit.footballclub.Utils.Const
-import com.adit.footballclub.Utils.Utils
+import com.adit.footballclub.utils.Const
+import com.adit.footballclub.utils.Utils
 import com.adit.footballclub.entity.Events
 import kotlinx.android.synthetic.main.match_item.view.*
 import org.jetbrains.anko.*
