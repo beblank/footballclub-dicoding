@@ -17,6 +17,7 @@ import com.adit.footballclub.adapter.ClubAdapter
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.ext.hide
 import com.adit.footballclub.ext.show
+import com.adit.footballclub.utils.Const
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
 import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
 import dagger.android.support.AndroidSupportInjection
@@ -56,12 +57,9 @@ class PrevMatchFragment : Fragment() {
         activityMainViewModel.getListEventsError().observe(this, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
-        activityMainViewModel.getSelectedTab().observe(requireActivity(), Observer {
-            progressbarPrevMatch.show()
-            rvMatchPrev.hide()
-            activityMainViewModel.getEvents(it ?: 0)
-        })
-        progressbarPrevMatch.visibility = View.VISIBLE
+        progressbarPrevMatch.show()
+        rvMatchPrev.hide()
+        activityMainViewModel.getEvents(Const.lastMatchTab)
     }
 
     private fun initRV(it: List<Events>) {
