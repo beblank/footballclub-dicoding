@@ -58,7 +58,7 @@ class NextMatchFragment : Fragment() {
         })
         progressbarNextMatch.show()
         rvMatchNext.hide()
-        activityMainViewModel.getEvents(Const.nextMatchTab)
+        activityMainViewModel.getEventsfromApi(Const.nextMatchTab)
     }
 
     private fun initRV(it: List<Events>) {
@@ -67,8 +67,4 @@ class NextMatchFragment : Fragment() {
         rvMatchNext.adapter = ClubAdapter(it)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        activityMainViewModel.disposeElements()
-    }
 }

@@ -34,18 +34,16 @@ class DetailActivity : AppCompatActivity() {
 
     lateinit var detailActivityViewModel: DetailActivityViewModel
 
+    lateinit var event:Events
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         AndroidInjection.inject(this)
-
-        val event = intent.getParcelableExtra<Events>(Const.event)
-
+        event = intent.getParcelableExtra<Events>(Const.event)
         setToolbar()
         setViewModel(event)
-
-
         initView(event)
     }
 
@@ -57,6 +55,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.menu_fav){
             Log.d("dodol", "fav pressed")
+            detailActivityViewModel.insertEvent(event)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -115,5 +114,10 @@ class DetailActivity : AppCompatActivity() {
         txt_away_forward.text = event.awayLineupForward
         txt_away_substitutes.text = event.awayLineupSubstitutes
 
+    }
+
+    override fun onDestroy() {
+        detailActivityViewModel.disposeElements()
+        super.onDestroy()
     }
 }

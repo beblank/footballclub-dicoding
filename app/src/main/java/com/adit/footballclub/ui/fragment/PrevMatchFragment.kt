@@ -59,7 +59,7 @@ class PrevMatchFragment : Fragment() {
         })
         progressbarPrevMatch.show()
         rvMatchPrev.hide()
-        activityMainViewModel.getEvents(Const.lastMatchTab)
+        activityMainViewModel.getEventsfromApi(Const.lastMatchTab)
     }
 
     private fun initRV(it: List<Events>) {
@@ -67,11 +67,5 @@ class PrevMatchFragment : Fragment() {
         rvMatchPrev.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         rvMatchPrev.adapter = ClubAdapter(it)
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        activityMainViewModel.disposeElements()
-    }
-
 
 }

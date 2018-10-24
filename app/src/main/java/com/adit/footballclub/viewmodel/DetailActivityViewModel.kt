@@ -2,8 +2,11 @@ package com.adit.footballclub.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.util.Log
+import com.adit.footballclub.entity.Events
 import com.adit.footballclub.entity.ListTeam
 import com.adit.footballclub.entity.Team
+import com.adit.footballclub.entity.repository.EventsRepository
 import com.adit.footballclub.entity.repository.TeamRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -13,7 +16,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class DetailActivityViewModel @Inject constructor(
-        val teamRepository: TeamRepository):ViewModel(){
+        val teamRepository: TeamRepository, val eventsRepository: EventsRepository):ViewModel(){
 
     private val listHomeTeam:MutableLiveData<Team> = MutableLiveData()
     private val listAwayTeam:MutableLiveData<Team> = MutableLiveData()
@@ -32,6 +35,14 @@ class DetailActivityViewModel @Inject constructor(
                 .subscribe {
                     listAwayTeam.value = it.teams[0]
                 })
+    }
+
+    fun insertEvent(events: Events){
+        compositeDisposable.add(
+                eventsRepository.insertEventtoDB(events)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe())
     }
 
     fun getHomeTeams(id:String){

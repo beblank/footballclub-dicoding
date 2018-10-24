@@ -4,6 +4,7 @@ import com.adit.footballclub.ui.fragment.NextMatchFragment
 import com.adit.footballclub.ui.fragment.PrevMatchFragment
 import com.adit.footballclub.ui.activity.DetailActivity
 import com.adit.footballclub.ui.activity.MainActivity
+import com.adit.footballclub.ui.fragment.FavoriteFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -20,5 +21,8 @@ abstract class BuildersModule{
 
     @ContributesAndroidInjector
     abstract fun contributeNextLastMatchFragment(): NextMatchFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeFavoriteFragment(): FavoriteFragment
 }
 

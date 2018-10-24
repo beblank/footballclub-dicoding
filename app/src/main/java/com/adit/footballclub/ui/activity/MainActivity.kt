@@ -34,4 +34,9 @@ class MainActivity : AppCompatActivity() {
         activityMainViewModel = ViewModelProviders.of(this, activityMaiViewModelFactory).get(ActivityMainViewModel::class.java)
     }
 
+    override fun onDestroy() {
+        activityMainViewModel.disposeElements()
+        super.onDestroy()
+    }
+
 }
