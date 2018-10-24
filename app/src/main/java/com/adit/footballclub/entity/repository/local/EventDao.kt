@@ -2,6 +2,7 @@ package com.adit.footballclub.entity.repository.local
 
 import android.arch.persistence.room.*
 import com.adit.footballclub.entity.Events
+import io.reactivex.Maybe
 import io.reactivex.Single
 
 @Dao
@@ -14,5 +15,8 @@ interface EventDao{
 
     @Delete
     fun deleteEvent(event:Events)
+
+    @Query("SELECT * FROM event WHERE id = :id")
+    fun searchAddedID(id:String): Maybe<Events>
 
 }

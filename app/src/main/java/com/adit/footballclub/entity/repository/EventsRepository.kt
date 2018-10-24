@@ -22,13 +22,17 @@ class EventsRepository @Inject constructor(val apiService: ApiService, val event
         return result!!
     }
 
-    fun getEventsFromDB():Observable<List<Events>>{
-        return eventsDao.getEvent()
+    fun getEventsFromDB() = eventsDao.getEvent()
                 .toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext { Log.d("dodol", "db : ${it}") }
-    }
 
     fun insertEventtoDB(events: Events) = Completable.fromCallable { eventsDao.insertEvent(events) }
+
+    fun checkFavorite(id:String) = eventsDao.searchAddedID(id)
+            .toObservable()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { Log.d("dodol", "db : ${it}") }
 }

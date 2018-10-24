@@ -21,6 +21,7 @@ class DetailActivityViewModel @Inject constructor(
     private val listHomeTeam:MutableLiveData<Team> = MutableLiveData()
     private val listAwayTeam:MutableLiveData<Team> = MutableLiveData()
     private val listTeamError:MutableLiveData<String> = MutableLiveData()
+    private val event:MutableLiveData<Events> = MutableLiveData()
 
     val compositeDisposable = CompositeDisposable()
 
@@ -43,6 +44,17 @@ class DetailActivityViewModel @Inject constructor(
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe())
+    }
+
+    fun getEventById() = event
+
+    fun checkEvent(id: String){
+        compositeDisposable.add(eventsRepository.checkFavorite(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe{
+                    event.value = it
+                })
     }
 
     fun getHomeTeams(id:String){

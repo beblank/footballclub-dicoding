@@ -36,6 +36,8 @@ class DetailActivity : AppCompatActivity() {
 
     lateinit var event:Events
 
+    var isFavorite = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +51,15 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.detail_menu, menu)
+        setFavorite(menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    private fun setFavorite(menu: Menu?) {
+        if (!isFavorite)
+            menu?.getItem(0)?.icon = getDrawable(R.drawable.ic_add_to_favorites)
+        else
+            menu?.getItem(0)?.icon = getDrawable(R.drawable.ic_added_to_favorites)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -77,9 +87,16 @@ class DetailActivity : AppCompatActivity() {
         detailActivityViewModel.getListTeamError().observe(this, Observer {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         })
+        detailActivityViewModel.getEventById().observe(this, Observer{
+            if (it != null)
+                isFavorite = true
+            else
+                isFavorite = false
+        })
 
         detailActivityViewModel.getAwayTeams(event.idAway)
         detailActivityViewModel.getHomeTeams(event.idHome)
+        detailActivityViewModel.checkEvent(event.idEvent)
     }
 
     private fun setToolbar() {
