@@ -16,4 +16,5 @@
     <string name="forward">Forward</string>
     <string name="defense">Defense</string>
     <string name="lineups">Lineups</string>
+    <string name="favourite">Favourite</string>
 </resources>

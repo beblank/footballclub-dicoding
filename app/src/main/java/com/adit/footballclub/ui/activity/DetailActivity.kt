@@ -4,6 +4,9 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import com.adit.footballclub.R
 import com.adit.footballclub.utils.Const
@@ -44,6 +47,18 @@ class DetailActivity : AppCompatActivity() {
 
 
         initView(event)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.menu_fav){
+            Log.d("dodol", "fav pressed")
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setViewModel(event: Events) {

@@ -32,9 +32,6 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         setSupportActionBar(toolbar)
         supportActionBar?.setTitle(R.string.main_title)
 
-        setupViewPager(viewpager)
-
-        tabs.setupWithViewPager(viewpager)
         AndroidInjection.inject(this)
 
         tabs.addOnTabSelectedListener(this)
@@ -57,26 +54,4 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         viewpager.setAdapter(adapter)
     }
 
-}
-
-class ViewPagerAdapter(supportFragmentManager: FragmentManager) : FragmentPagerAdapter(supportFragmentManager) {
-    private val mFragmentList = ArrayList<Fragment>()
-    private val mFragmentTitleList = ArrayList<String>()
-
-    override fun getItem(position: Int): Fragment {
-        return mFragmentList.get(position)
-    }
-
-    override fun getCount(): Int {
-        return mFragmentList.size
-    }
-
-    fun addFragment(fragment: Fragment, title: String) {
-        mFragmentList.add(fragment)
-        mFragmentTitleList.add(title)
-    }
-
-    override fun getPageTitle(position: Int): CharSequence? {
-        return mFragmentTitleList.get(position)
-    }
 }
