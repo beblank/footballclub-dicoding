@@ -11,6 +11,8 @@ import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import androidx.navigation.Navigation
+import androidx.navigation.ui.setupWithNavController
 import com.adit.footballclub.R
 import com.adit.footballclub.ui.fragment.MatchFragment
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
@@ -18,7 +20,7 @@ import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
+class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var activityMaiViewModelFactory: ActivityMainViewModelFactory
@@ -29,29 +31,14 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        nav_bottom.setupWithNavController(Navigation.findNavController(this, R.id.nav_host_fragment))
+
         setSupportActionBar(toolbar)
         supportActionBar?.setTitle(R.string.main_title)
 
         AndroidInjection.inject(this)
 
-        tabs.addOnTabSelectedListener(this)
-
         activityMainViewModel = ViewModelProviders.of(this, activityMaiViewModelFactory).get(ActivityMainViewModel::class.java)
-    }
-
-    override fun onTabReselected(tab: TabLayout.Tab) {}
-
-    override fun onTabUnselected(p0: TabLayout.Tab?) {}
-
-    override fun onTabSelected(tab: TabLayout.Tab) {
-        activityMainViewModel.getSelectedTab().value = tab.position
-    }
-
-    private fun setupViewPager(viewpager: ViewPager) {
-        val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(MatchFragment(), resources.getString(R.string.last_match))
-        adapter.addFragment(MatchFragment(), resources.getString(R.string.next_match))
-        viewpager.setAdapter(adapter)
     }
 
 }

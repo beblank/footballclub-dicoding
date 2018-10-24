@@ -16,5 +16,6 @@
     <string name="forward">Forward</string>
     <string name="defense">Defense</string>
     <string name="lineups">Lineups</string>
-    <string name="favourite">Favourite</string>
+    <string name="favorite">Favorite</string>
+    <string name="prev_match">Prev Match</string>
 </resources>

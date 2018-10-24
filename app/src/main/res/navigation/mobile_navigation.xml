@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mobile_navigation" app:startDestination="@id/prevMatchFragment">
+
+    <fragment android:id="@+id/prevMatchFragment" android:name="com.adit.footballclub.PrevMatchFragment"
+              android:label="fragment_prev_match" tools:layout="@layout/fragment_prev_match"/>
+
+    <fragment android:id="@+id/nextMatchFragment" android:name="com.adit.footballclub.NextMatchFragment"
+              android:label="fragment_next_match" tools:layout="@layout/fragment_next_match"/>
+
+    <fragment android:id="@+id/favoriteFragment" android:name="com.adit.footballclub.FavoriteFragment"
+              android:label="fragment_favorite" tools:layout="@layout/fragment_favorite"/>
+
+
 </navigation>
