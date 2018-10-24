@@ -1,7 +1,7 @@
 package com.adit.footballclub.di.module
 
-import com.adit.footballclub.NextMatchFragment
-import com.adit.footballclub.PrevMatchFragment
+import com.adit.footballclub.ui.fragment.NextMatchFragment
+import com.adit.footballclub.ui.fragment.PrevMatchFragment
 import com.adit.footballclub.ui.activity.DetailActivity
 import com.adit.footballclub.ui.activity.MainActivity
 import dagger.Module

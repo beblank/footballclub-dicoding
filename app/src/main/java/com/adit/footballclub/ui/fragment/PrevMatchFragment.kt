@@ -1,4 +1,4 @@
-package com.adit.footballclub
+package com.adit.footballclub.ui.fragment
 
 
 import android.arch.lifecycle.Observer
@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.adit.footballclub.R
 import com.adit.footballclub.adapter.ClubAdapter
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.ext.hide
@@ -21,11 +22,11 @@ import com.adit.footballclub.utils.Const
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
 import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_next_match.*
 import kotlinx.android.synthetic.main.fragment_prev_match.*
 import javax.inject.Inject
 
-class NextMatchFragment : Fragment() {
+
+class PrevMatchFragment : Fragment() {
 
     @Inject
     lateinit var activityMainViewModelFactory: ActivityMainViewModelFactory
@@ -35,7 +36,7 @@ class NextMatchFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_next_match, container, false)
+        return inflater.inflate(R.layout.fragment_prev_match, container, false)
     }
 
     override fun onAttach(context: Context?) {
@@ -48,27 +49,29 @@ class NextMatchFragment : Fragment() {
         activityMainViewModel = ViewModelProviders.of(requireActivity(), activityMainViewModelFactory).get(ActivityMainViewModel::class.java)
         activityMainViewModel.getListEvents().observe(this, Observer {
             if (it != null){
-                progressbarNextMatch.hide()
-                rvMatchNext.show()
+                progressbarPrevMatch.hide()
+                rvMatchPrev.show()
                 initRV(it)
             }
         })
         activityMainViewModel.getListEventsError().observe(this, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
-        progressbarNextMatch.show()
-        rvMatchNext.hide()
-        activityMainViewModel.getEvents(Const.nextMatchTab)
+        progressbarPrevMatch.show()
+        rvMatchPrev.hide()
+        activityMainViewModel.getEvents(Const.lastMatchTab)
     }
 
     private fun initRV(it: List<Events>) {
         Log.d("dodol", "$it")
-        rvMatchNext.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rvMatchNext.adapter = ClubAdapter(it)
+        rvMatchPrev.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        rvMatchPrev.adapter = ClubAdapter(it)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         activityMainViewModel.disposeElements()
     }
+
+
 }
