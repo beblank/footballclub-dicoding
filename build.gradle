@@ -29,7 +29,8 @@ task clean(type: Delete) {
 
 ext {
     dagger2Version = "2.15"
-    archLifecycleVersion = "1.1.0"
+    archLifecycleVersion = "1.1.1"
+    archRoomVersion = "1.1.1"
     retrofitVersion = "2.3.0"
     rxAndroidVersion = "2.0.2"
     rxJava2Version = "2.1.0"

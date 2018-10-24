@@ -49,7 +49,7 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:${rootProject.ext.dagger2Version}"
     //Lifecycle
     implementation "android.arch.lifecycle:extensions:${rootProject.ext.archLifecycleVersion}"
-    kapt "android.arch.lifecycle:compiler:${rootProject.ext.archLifecycleVersion}"
+    kapt "android.arch.lifecycle:common-java8:${rootProject.ext.archLifecycleVersion}"
     //RxJava 2 LiveData
     implementation "android.arch.lifecycle:reactivestreams:${rootProject.ext.archLifecycleVersion}"
     //Okhttp
@@ -65,6 +65,11 @@ dependencies {
     implementation "org.jetbrains.anko:anko-commons:${rootProject.ext.ankoVersion}"
     //Picasso
     implementation "com.squareup.picasso:picasso:${rootProject.ext.picassoVersion}"
+
+    //Room
+    implementation "android.arch.persistence.room:runtime:${rootProject.ext.archRoomVersion}"
+    implementation "android.arch.persistence.room:rxjava2:${rootProject.ext.archRoomVersion}"
+    kapt "android.arch.persistence.room:compiler:${rootProject.ext.archRoomVersion}"
 
 
 }
