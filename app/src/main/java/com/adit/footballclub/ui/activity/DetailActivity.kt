@@ -44,9 +44,10 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
         AndroidInjection.inject(this)
         event = intent.getParcelableExtra<Events>(Const.event)
-        setToolbar()
+
         setViewModel(event)
         initView(event)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -92,6 +93,8 @@ class DetailActivity : AppCompatActivity() {
                 isFavorite = true
             else
                 isFavorite = false
+            setToolbar()
+
         })
 
         detailActivityViewModel.getAwayTeams(event.idAway)
