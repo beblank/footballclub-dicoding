@@ -23,6 +23,7 @@ class DetailActivityViewModel @Inject constructor(
     private val listTeamError:MutableLiveData<String> = MutableLiveData()
     private val event:MutableLiveData<Events> = MutableLiveData()
     private val insertStatus:MutableLiveData<Boolean> = MutableLiveData()
+    private val deleteStatus:MutableLiveData<Boolean> = MutableLiveData()
 
     val compositeDisposable = CompositeDisposable()
 
@@ -31,6 +32,7 @@ class DetailActivityViewModel @Inject constructor(
     fun getListAwayTeam():MutableLiveData<Team> = listAwayTeam
     fun getEventById() = event
     fun getInsertStatus() = insertStatus
+    fun getDeleteStatus() = deleteStatus
 
     fun getAwayTeams(id:String){
         compositeDisposable.add(teamRepository.getTeamDetail(id)
@@ -49,6 +51,17 @@ class DetailActivityViewModel @Inject constructor(
                         .doOnNext { insertStatus.value = true }
                         .doOnError { insertStatus.value = false }
                         .subscribe())
+    }
+
+    fun deleteEvent(events: Events){
+        compositeDisposable.add(
+                eventsRepository.deleteEventfromDB(events)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnNext { deleteStatus.value = true }
+                        .doOnError { deleteStatus.value = false }
+                        .subscribe()
+        )
     }
 
     fun checkEvent(id: String){
@@ -71,6 +84,6 @@ class DetailActivityViewModel @Inject constructor(
     }
 
     fun disposeElements(){
-        compositeDisposable.clear()
+        compositeDisposable.dispose()
     }
 }

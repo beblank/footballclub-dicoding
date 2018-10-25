@@ -45,7 +45,7 @@ class NextMatchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activityMainViewModel = ViewModelProviders.of(requireActivity(), activityMainViewModelFactory).get(ActivityMainViewModel::class.java)
+        activityMainViewModel = ViewModelProviders.of(this, activityMainViewModelFactory).get(ActivityMainViewModel::class.java)
         activityMainViewModel.getListEvents().observe(this, Observer {
             if (it != null){
                 progressbarNextMatch.hide()

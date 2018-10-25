@@ -29,6 +29,7 @@ class EventsRepository @Inject constructor(val apiService: ApiService, val event
                 .doOnNext { Log.d("dodol", "db : ${it}") }
 
     fun insertEventtoDB(events: Events) = Observable.fromCallable { eventsDao.insertEvent(events) }
+    fun deleteEventfromDB(events: Events) = Observable.fromCallable { eventsDao.deleteEvent(events) }
 
     fun checkFavorite(id:String) = eventsDao.searchAddedID(id)
             .toObservable()

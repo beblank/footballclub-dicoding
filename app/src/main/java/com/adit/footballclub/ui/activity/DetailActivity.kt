@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -61,17 +62,22 @@ class DetailActivity : AppCompatActivity() {
     private fun setFavorite() {
         if (!isFavorite) {
             menu.getItem(0).icon = getDrawable(R.drawable.ic_add_to_favorites)
-            detailActivityViewModel.insertEvent(event)
-            isFavorite = true
         } else {
             menu.getItem(0).icon = getDrawable(R.drawable.ic_added_to_favorites)
-            isFavorite = false
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.menu_fav){
+            if (isFavorite){
+                detailActivityViewModel.deleteEvent(event)
+                isFavorite = false
+            } else {
+                detailActivityViewModel.insertEvent(event)
+                isFavorite = true
+            }
             setFavorite()
+            invalidateOptionsMenu()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -96,6 +102,18 @@ class DetailActivity : AppCompatActivity() {
         detailActivityViewModel.getEventById().observe(this, Observer{
             isFavorite = true
             invalidateOptionsMenu()
+        })
+        detailActivityViewModel.getInsertStatus().observe(this, Observer {
+            if(it!!){
+                Snackbar.make(content, "Event saved to Database", Snackbar.LENGTH_SHORT).show()
+            }
+
+        })
+        detailActivityViewModel.getDeleteStatus().observe(this, Observer {
+            if(it!!){
+                Snackbar.make(content, "Event deleted from Database", Snackbar.LENGTH_SHORT).show()
+            }
+
         })
 
         detailActivityViewModel.getAwayTeams(event.idAway)

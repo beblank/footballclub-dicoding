@@ -45,6 +45,6 @@ class ActivityMainViewModel @Inject constructor(
     }
 
     fun disposeElements(){
-        compositeDisposable.clear()
+        compositeDisposable.dispose()
     }
 }

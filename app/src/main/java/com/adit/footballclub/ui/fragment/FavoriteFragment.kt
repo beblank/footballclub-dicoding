@@ -44,9 +44,9 @@ class FavoriteFragment : Fragment() {
         AndroidSupportInjection.inject(this)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        activityMainViewModel = ViewModelProviders.of(requireActivity(), activityMainViewModelFactory).get(ActivityMainViewModel::class.java)
+    override fun onStart() {
+        super.onStart()
+        activityMainViewModel = ViewModelProviders.of(this, activityMainViewModelFactory).get(ActivityMainViewModel::class.java)
         activityMainViewModel.getListEvents().observe(this, Observer {
             if (it != null){
                 progressbarFavMatch.hide()
@@ -65,11 +65,14 @@ class FavoriteFragment : Fragment() {
     private fun initRV(it: List<Events>) {
         Log.d("dodol", "$it")
         rvMatchFav.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rvMatchFav.adapter = ClubAdapter(it)
+        val adapter = ClubAdapter(it)
+        adapter.notifyDataSetChanged()
+        rvMatchFav.adapter = adapter
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onPause() {
+        super.onPause()
         activityMainViewModel.getListEvents().value = null
+
     }
 }

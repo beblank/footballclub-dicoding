@@ -1,5 +1,6 @@
 package com.adit.footballclub.adapter
 
+import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.match_item.view.*
 import org.jetbrains.anko.*
 
 class ClubAdapter(val eventList:List<Events>):RecyclerView.Adapter<ClubAdapter.ViewHolder>(){
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)=
         ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.match_item,parent, false))
 
