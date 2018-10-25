@@ -70,6 +70,6 @@ class FavoriteFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        activityMainViewModel.disposeElements()
+        activityMainViewModel.getListEvents().value = null
     }
 }

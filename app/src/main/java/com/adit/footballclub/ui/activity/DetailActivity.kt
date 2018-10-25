@@ -36,6 +36,8 @@ class DetailActivity : AppCompatActivity() {
 
     lateinit var event:Events
 
+    lateinit var menu:Menu
+
     var isFavorite = false
 
 
@@ -44,29 +46,32 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
         AndroidInjection.inject(this)
         event = intent.getParcelableExtra<Events>(Const.event)
-
         setViewModel(event)
         initView(event)
-
+        setToolbar()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.detail_menu, menu)
-        setFavorite(menu)
+        this.menu = menu
+        setFavorite()
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun setFavorite(menu: Menu?) {
-        if (!isFavorite)
-            menu?.getItem(0)?.icon = getDrawable(R.drawable.ic_add_to_favorites)
-        else
-            menu?.getItem(0)?.icon = getDrawable(R.drawable.ic_added_to_favorites)
+    private fun setFavorite() {
+        if (!isFavorite) {
+            menu.getItem(0).icon = getDrawable(R.drawable.ic_add_to_favorites)
+            detailActivityViewModel.insertEvent(event)
+            isFavorite = true
+        } else {
+            menu.getItem(0).icon = getDrawable(R.drawable.ic_added_to_favorites)
+            isFavorite = false
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.menu_fav){
-            Log.d("dodol", "fav pressed")
-            detailActivityViewModel.insertEvent(event)
+            setFavorite()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -89,12 +94,8 @@ class DetailActivity : AppCompatActivity() {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         })
         detailActivityViewModel.getEventById().observe(this, Observer{
-            if (it != null)
-                isFavorite = true
-            else
-                isFavorite = false
-            setToolbar()
-
+            isFavorite = true
+            invalidateOptionsMenu()
         })
 
         detailActivityViewModel.getAwayTeams(event.idAway)

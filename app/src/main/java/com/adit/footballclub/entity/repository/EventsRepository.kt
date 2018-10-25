@@ -28,7 +28,7 @@ class EventsRepository @Inject constructor(val apiService: ApiService, val event
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext { Log.d("dodol", "db : ${it}") }
 
-    fun insertEventtoDB(events: Events) = Completable.fromCallable { eventsDao.insertEvent(events) }
+    fun insertEventtoDB(events: Events) = Observable.fromCallable { eventsDao.insertEvent(events) }
 
     fun checkFavorite(id:String) = eventsDao.searchAddedID(id)
             .toObservable()
