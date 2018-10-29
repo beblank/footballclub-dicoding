@@ -25,7 +25,7 @@ class DetailActivityViewModel @Inject constructor(
     private val insertStatus:MutableLiveData<Boolean> = MutableLiveData()
     private val deleteStatus:MutableLiveData<Boolean> = MutableLiveData()
 
-    val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
 
     fun getListTeamError():MutableLiveData<String> = listTeamError
     fun getListHomeTeam():MutableLiveData<Team> = listHomeTeam

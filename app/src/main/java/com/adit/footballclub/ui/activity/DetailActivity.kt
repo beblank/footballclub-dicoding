@@ -39,7 +39,7 @@ class DetailActivity : AppCompatActivity() {
 
     lateinit var menu:Menu
 
-    var isFavorite = false
+    private var isFavorite = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

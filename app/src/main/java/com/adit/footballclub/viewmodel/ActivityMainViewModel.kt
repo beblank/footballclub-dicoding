@@ -14,10 +14,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 class ActivityMainViewModel @Inject constructor(
-    val eventsRepository: EventsRepository):ViewModel(){
+    private val eventsRepository: EventsRepository):ViewModel(){
     private val listEvents:MutableLiveData<List<Events>> = MutableLiveData()
     private val listEventsError:MutableLiveData<String> = MutableLiveData()
-    val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
     fun getListEvents():MutableLiveData<List<Events>> = listEvents
     fun getListEventsError():MutableLiveData<String> = listEventsError
 
