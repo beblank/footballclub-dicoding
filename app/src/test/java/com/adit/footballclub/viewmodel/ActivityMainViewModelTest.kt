@@ -42,15 +42,24 @@ class ActivityMainViewModelTest:BaseTest(){
 
 
     @Test
-    fun checkPastEventMatchSize(){
+    fun checkPastEventMatch(){
         assertEquals(null, viewModel.getListEvents().value, "check if event still null")
         viewModel.getEventsfromApi(Const.lastMatchTab)
         assertNotEquals(null, viewModel.getListEvents().value, "event should be not null")
         assertEquals(null, viewModel.getListEventsError().value, "error shoule be null")
         assertEquals(15, viewModel.getListEvents().value!!.size, "event list size should be 15")
+        assertNotEquals(null, viewModel.getListEvents().value!![0].homeScore, "home score should be not null")
+        assertNotEquals(null, viewModel.getListEvents().value!![0].awayScore, "away score should be not null")
     }
 
-    fun testDataObservable():Observable<ListEvent>{
-        return Observable.just(ApiUtils.getUrl(POST_MOCK_PATH))
+    @Test
+    fun checkNextEventMatch(){
+        assertEquals(null, viewModel.getListEvents().value, "check if event still null")
+        viewModel.getEventsfromApi(Const.nextMatchTab)
+        assertNotEquals(null, viewModel.getListEvents().value, "event should be not null")
+        assertEquals(null, viewModel.getListEventsError().value, "error shoule be null")
+        assertEquals(15, viewModel.getListEvents().value!!.size, "event list size should be 15")
+        assertEquals(null, viewModel.getListEvents().value!![0].homeScore, "home score should be null")
+        assertEquals(null, viewModel.getListEvents().value!![0].awayScore, "away score should be null")
     }
 }
