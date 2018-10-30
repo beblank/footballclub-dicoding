@@ -17,6 +17,7 @@ import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 
 @RunWith(RobolectricTestRunner::class)
 class ActivityMainViewModelTest:BaseTest(){
@@ -43,6 +44,10 @@ class ActivityMainViewModelTest:BaseTest(){
     @Test
     fun checkPastEventMatchSize(){
         assertEquals(null, viewModel.getListEvents().value, "check if event still null")
+        viewModel.getEventsfromApi(Const.lastMatchTab)
+        assertNotEquals(null, viewModel.getListEvents().value, "event should be not null")
+        assertEquals(null, viewModel.getListEventsError().value, "error shoule be null")
+        assertEquals(15, viewModel.getListEvents().value!!.size, "event list size should be 15")
     }
 
     fun testDataObservable():Observable<ListEvent>{
