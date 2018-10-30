@@ -20,7 +20,7 @@ import com.adit.footballclub.ext.hide
 import com.adit.footballclub.ext.show
 import com.adit.footballclub.utils.Const
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
-import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
+import com.adit.footballclub.viewmodel.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_next_match.*
 import javax.inject.Inject
@@ -28,7 +28,7 @@ import javax.inject.Inject
 class NextMatchFragment : Fragment() {
 
     @Inject
-    lateinit var activityMainViewModelFactory: ActivityMainViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
 
     lateinit var activityMainViewModel: ActivityMainViewModel
 
@@ -45,7 +45,7 @@ class NextMatchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activityMainViewModel = ViewModelProviders.of(this, activityMainViewModelFactory).get(ActivityMainViewModel::class.java)
+        activityMainViewModel = ViewModelProviders.of(this, viewModelFactory)[ActivityMainViewModel::class.java]
         activityMainViewModel.getListEvents().observe(this, Observer {
             if (it != null){
                 progressbarNextMatch.hide()

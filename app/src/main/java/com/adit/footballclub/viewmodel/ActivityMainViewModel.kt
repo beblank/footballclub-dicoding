@@ -22,7 +22,7 @@ class ActivityMainViewModel @Inject constructor(
     fun getListEventsError():MutableLiveData<String> = listEventsError
 
     @Singleton
-    fun getEventsfromApi(tabs:Int){
+    fun getEventsfromApi(tabs:Int):Boolean{
         compositeDisposable.add(
                 eventsRepository.getEvents(Const.id, tabs)
                 .subscribeOn(Schedulers.io())
@@ -30,7 +30,7 @@ class ActivityMainViewModel @Inject constructor(
                 .doOnError { listEventsError.value = it.message }
                 .subscribe { listEvents.value = it.events }
         )
-
+        return true
     }
 
     @Singleton

@@ -9,14 +9,14 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.adit.footballclub.R
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
-import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
+import com.adit.footballclub.viewmodel.ViewModelFactory
 import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var activityMaiViewModelFactory: ActivityMainViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
 
     lateinit var activityMainViewModel: ActivityMainViewModel
 
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         AndroidInjection.inject(this)
 
-        activityMainViewModel = ViewModelProviders.of(this, activityMaiViewModelFactory).get(ActivityMainViewModel::class.java)
+        activityMainViewModel = ViewModelProviders.of(this, viewModelFactory)[ActivityMainViewModel::class.java]
     }
 
     override fun onDestroy() {

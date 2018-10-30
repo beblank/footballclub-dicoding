@@ -18,9 +18,8 @@ import com.adit.footballclub.adapter.ClubAdapter
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.ext.hide
 import com.adit.footballclub.ext.show
-import com.adit.footballclub.utils.Const
 import com.adit.footballclub.viewmodel.ActivityMainViewModel
-import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
+import com.adit.footballclub.viewmodel.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import javax.inject.Inject
@@ -29,7 +28,7 @@ import javax.inject.Inject
 class FavoriteFragment : Fragment() {
 
     @Inject
-    lateinit var activityMainViewModelFactory: ActivityMainViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
 
     lateinit var activityMainViewModel: ActivityMainViewModel
 
@@ -46,7 +45,7 @@ class FavoriteFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        activityMainViewModel = ViewModelProviders.of(this, activityMainViewModelFactory).get(ActivityMainViewModel::class.java)
+        activityMainViewModel = ViewModelProviders.of(this, viewModelFactory)[ActivityMainViewModel::class.java]
         activityMainViewModel.getListEvents().observe(this, Observer {
             if (it != null){
                 progressbarFavMatch.hide()

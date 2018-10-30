@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -14,7 +13,7 @@ import com.adit.footballclub.utils.Const
 import com.adit.footballclub.utils.Utils
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.viewmodel.DetailActivityViewModel
-import com.adit.footballclub.viewmodel.DetailActivityViewModelFactory
+import com.adit.footballclub.viewmodel.ViewModelFactory
 import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -31,7 +30,7 @@ import javax.inject.Inject
 class DetailActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var detailActivityViewModelFactory:DetailActivityViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory
 
     lateinit var detailActivityViewModel: DetailActivityViewModel
 
@@ -83,8 +82,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setViewModel(event: Events) {
-        detailActivityViewModel = ViewModelProviders.of(this, detailActivityViewModelFactory)
-                .get(DetailActivityViewModel::class.java)
+        detailActivityViewModel = ViewModelProviders.of(this, viewModelFactory)[DetailActivityViewModel::class.java]
 
         detailActivityViewModel.getListAwayTeam().observe(this, Observer{
             if (it != null){

@@ -6,8 +6,7 @@ import android.arch.persistence.room.Room
 import com.adit.footballclub.entity.repository.local.Database
 import com.adit.footballclub.entity.repository.local.EventDao
 import com.adit.footballclub.utils.Const
-import com.adit.footballclub.viewmodel.ActivityMainViewModelFactory
-import com.adit.footballclub.viewmodel.DetailActivityViewModelFactory
+import com.adit.footballclub.viewmodel.ViewModelFactory
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -20,11 +19,7 @@ class AppModule(val app:Application){
 
     @Provides
     @Singleton
-    fun provideActivityMainViewModelFactory(factory:ActivityMainViewModelFactory):ViewModelProvider.Factory = factory
-
-    @Provides
-    @Singleton
-    fun provideDetailActivityViewModelFactory(factory: DetailActivityViewModelFactory):ViewModelProvider.Factory = factory
+    fun provideViewModelFactory(factory:ViewModelFactory):ViewModelProvider.Factory = factory
 
     @Provides
     @Singleton
@@ -35,7 +30,6 @@ class AppModule(val app:Application){
 
     @Provides
     @Singleton
-    fun provideEventDao(
-            database: Database): EventDao = database.eventDao()
+    fun provideEventDao(database: Database): EventDao = database.eventDao()
 
 }

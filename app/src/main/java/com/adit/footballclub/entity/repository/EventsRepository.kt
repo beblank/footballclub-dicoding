@@ -13,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class EventsRepository @Inject constructor(val apiService: ApiService, val eventsDao: EventDao){
+
     fun getEvents(id:String, tabs:Int): Observable<ListEvent>{
         var result:Observable<ListEvent>? = null
         when (tabs){
