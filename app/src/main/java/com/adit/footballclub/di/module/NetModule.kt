@@ -34,4 +34,5 @@ class NetModule(private val baseUrl:String){
     @Provides
     @Singleton
     fun providesApiService(retrofit: Retrofit):ApiService = retrofit.create(ApiService::class.java)
-}
+
+ }

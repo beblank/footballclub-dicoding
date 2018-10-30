@@ -21,35 +21,17 @@ import java.util.concurrent.TimeUnit
 
 class ActivityMainViewModelTest{
 
-    @Rule @JvmField var rule = MockitoJUnit.rule()
-    @Rule @JvmField var Rxrule = RxImmediateSchedulerRule()
 
-    lateinit var activityMainViewModel:ActivityMainViewModel
-    @Mock
-    lateinit var apiService: ApiService
-    @Mock
-    lateinit var eventDao: EventDao
-    lateinit var eventsRepository: EventsRepository
-    lateinit var testObserver:TestObserver<ListEvent>
 
     @Before
     fun setup(){
-
-        MockitoAnnotations.initMocks(this)
-        eventsRepository = EventsRepository(apiService, eventDao)
-        activityMainViewModel = ActivityMainViewModel(eventsRepository)
-        `when`(eventsRepository.getEvents(Const.id, Const.lastMatchTab)).thenReturn(testDataObservable())
     }
 
 
     @Test
     fun checkPastEventMatchSize(){
-        activityMainViewModel.getEventsfromApi(Const.lastMatchTab)
-        //testObserver = eventsRepository.getEvents(Const.id, 0).debounce(20, TimeUnit.SECONDS).test()
-        testObserver.awaitTerminalEvent()
-        testObserver.assertNoErrors()
-                .assertComplete()
-                .assertValue{l -> l.events.size == 15}
+
+
     }
 
     fun testDataObservable():Observable<ListEvent>{

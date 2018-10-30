@@ -26,6 +26,10 @@ android {
         experimental = true
     }
 }
+android.applicationVariants.all {
+    def aptOutputDir = new File(buildDir, "generated/source/kapt/${it.unitTestVariant.dirName}")
+    it.unitTestVariant.addJavaSourceFoldersToModel(aptOutputDir)
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -47,6 +51,8 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:${rootProject.ext.dagger2Version}"
     kapt "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2Version}"
     kapt "com.google.dagger:dagger-android-processor:${rootProject.ext.dagger2Version}"
+    kaptTest "com.google.dagger:dagger:${rootProject.ext.dagger2Version}"
+    testImplementation "com.google.dagger:dagger:${rootProject.ext.dagger2Version}"
     //Lifecycle
     implementation "android.arch.lifecycle:extensions:${rootProject.ext.archLifecycleVersion}"
     kapt "android.arch.lifecycle:common-java8:${rootProject.ext.archLifecycleVersion}"
