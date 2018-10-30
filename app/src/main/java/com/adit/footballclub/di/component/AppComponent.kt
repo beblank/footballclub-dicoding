@@ -11,8 +11,7 @@ import javax.inject.Singleton
     AppModule::class,
     BuildersModule::class,
     NetModule::class,
-    ViewModelModule::class,
-    LocalModule::class])
+    ViewModelModule::class])
 interface AppComponent {
     fun inject(app:BaseApplication)
 }

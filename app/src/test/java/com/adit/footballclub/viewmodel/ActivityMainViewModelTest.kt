@@ -1,37 +1,48 @@
 package com.adit.footballclub.viewmodel
 
+import android.arch.core.executor.testing.InstantTaskExecutorRule
+import android.arch.lifecycle.ViewModelProviders
+import android.support.v4.app.FragmentActivity
+import com.adit.footballclub.BaseTest
 import com.adit.footballclub.entity.ListEvent
-import com.adit.footballclub.entity.repository.EventsRepository
-import com.adit.footballclub.entity.repository.local.EventDao
-import com.adit.footballclub.entity.repository.remote.ApiService
 import com.adit.footballclub.utils.ApiUtils
 import com.adit.footballclub.utils.Const
 import com.adit.footballclub.utils.POST_MOCK_PATH
 import com.adit.footballclub.utils.RxImmediateSchedulerRule
 import io.reactivex.Observable
-import io.reactivex.observers.TestObserver
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.MockitoAnnotations
-import org.mockito.junit.MockitoJUnit
-import java.util.concurrent.TimeUnit
+import org.junit.runner.RunWith
+import org.robolectric.Robolectric
+import org.robolectric.RobolectricTestRunner
+import kotlin.test.assertEquals
 
-class ActivityMainViewModelTest{
+@RunWith(RobolectricTestRunner::class)
+class ActivityMainViewModelTest:BaseTest(){
 
+    @Rule
+    @JvmField
+    val rxTestRule = RxImmediateSchedulerRule()
 
+    @Rule
+    @JvmField
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    lateinit var activity:FragmentActivity
+    lateinit var viewModel:ActivityMainViewModel
 
     @Before
-    fun setup(){
+    override fun setup(){
+        super.setup()
+        activity = Robolectric.setupActivity(FragmentActivity::class.java)
+        viewModel = ViewModelProviders.of(activity, viewModelFactory)[ActivityMainViewModel::class.java]
     }
 
 
     @Test
     fun checkPastEventMatchSize(){
-
-
+        assertEquals(null, viewModel.getListEvents().value, "check if event still null")
     }
 
     fun testDataObservable():Observable<ListEvent>{
