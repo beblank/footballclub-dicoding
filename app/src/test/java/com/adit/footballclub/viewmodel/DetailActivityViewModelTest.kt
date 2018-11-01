@@ -11,6 +11,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
+import java.lang.Exception
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
@@ -29,6 +30,7 @@ class DetailActivityViewModelTest: BaseTest(){
     lateinit var viewModel:DetailActivityViewModel
     val  homeID = "133604"
     val  awayID = "133602"
+    val eventId= "576570"
 
     @Before
     override fun setup(){
@@ -56,5 +58,13 @@ class DetailActivityViewModelTest: BaseTest(){
         assertEquals(null, viewModel.getListHomeTeam().value, "home team shoule be null")
         assertEquals(null, viewModel.getListTeamError().value, "error shoule be null")
         assertNotEquals("", viewModel.getListAwayTeam().value!!.logo, "away team logo should not be null")
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun checkFavorite(){
+        assertEquals(null, viewModel.getEventById().value, "favorite event should be null")
+        viewModel.checkEvent(eventId)
+        assertEquals(null, viewModel.getEventById().value, "favorite event should be null since db is droped on test")
     }
 }

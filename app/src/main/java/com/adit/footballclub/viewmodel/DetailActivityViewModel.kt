@@ -70,7 +70,6 @@ class DetailActivityViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe{
                     event.value = it
-                    Log.d("dodol", "event is $it")
                 })
     }
 

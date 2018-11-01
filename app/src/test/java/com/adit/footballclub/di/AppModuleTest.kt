@@ -17,7 +17,7 @@ class AppModuleTest(val app: Application){
 
     @Provides
     @Singleton
-    fun provideEventsDatabase(app: Application): Database =
+    fun provideEventsDatabase(): Database =
             Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(), Database::class.java).allowMainThreadQueries().build()
 
     @Provides
