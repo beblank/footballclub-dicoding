@@ -22,10 +22,10 @@ import com.adit.footballclub.utils.Const
 import com.adit.footballclub.viewmodel.EventViewModel
 import com.adit.footballclub.viewmodel.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_next_match.*
+import kotlinx.android.synthetic.main.fragment_team.*
 import javax.inject.Inject
 
-class NextMatchFragment : Fragment() {
+class TeamFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -35,7 +35,7 @@ class NextMatchFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_next_match, container, false)
+        return inflater.inflate(R.layout.fragment_team, container, false)
     }
 
     override fun onAttach(context: Context?) {
@@ -48,23 +48,23 @@ class NextMatchFragment : Fragment() {
         eventViewModel = ViewModelProviders.of(this, viewModelFactory)[EventViewModel::class.java]
         eventViewModel.getListEvents().observe(this, Observer {
             if (it != null){
-                progressbarNextMatch.hide()
-                rvMatchNext.show()
+                progressbarTeam.hide()
+                rvTeam.show()
                 initRV(it)
             }
         })
         eventViewModel.getListEventsError().observe(this, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
-        progressbarNextMatch.show()
-        rvMatchNext.hide()
+        progressbarTeam.show()
+        rvTeam.hide()
         eventViewModel.getEventsfromApi(Const.nextMatchTab)
     }
 
     private fun initRV(it: List<Events>) {
         Log.d("dodol", "$it")
-        rvMatchNext.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rvMatchNext.adapter = ClubAdapter(it)
+        rvTeam.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        rvTeam.adapter = ClubAdapter(it)
     }
 
 }

@@ -70,9 +70,9 @@ class EventFragment : Fragment() {
         rvMatch.adapter = ClubAdapter(it)
     }
 
-    override fun onDestroy() {
-        eventViewModel.disposeElements()
-        super.onDestroy()
+    override fun onPause() {
+        eventViewModel.getListEvents().value = null
+        super.onPause()
     }
 
 }

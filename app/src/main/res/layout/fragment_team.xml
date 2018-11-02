@@ -3,17 +3,17 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".ui.fragment.NextMatchFragment">
+             tools:context=".ui.fragment.TeamFragment">
 
     <ProgressBar
-            android:id="@+id/progressbarNextMatch"
+            android:id="@+id/progressbarTeam"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_centerInParent="true"/>
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvMatchNext"
+            android:id="@+id/rvTeam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

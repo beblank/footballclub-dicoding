@@ -7,8 +7,8 @@
     <fragment android:id="@+id/eventFragment" android:name="com.adit.footballclub.ui.fragment.ContainerEventFragment"
               android:label="fragment_event" tools:layout="@layout/fragment_container_event"/>
 
-    <fragment android:id="@+id/nextMatchFragment" android:name="com.adit.footballclub.ui.fragment.NextMatchFragment"
-              android:label="fragment_next_match" tools:layout="@layout/fragment_next_match"/>
+    <fragment android:id="@+id/teamFragment" android:name="com.adit.footballclub.ui.fragment.TeamFragment"
+              android:label="fragment_team" tools:layout="@layout/fragment_team"/>
 
     <fragment android:id="@+id/favoriteFragment" android:name="com.adit.footballclub.ui.fragment.FavoriteFragment"
               android:label="fragment_favorite" tools:layout="@layout/fragment_favorite"/>

@@ -7,7 +7,7 @@
             android:title="@string/prev_match" />
 
     <item
-            android:id="@+id/nextMatchFragment"
+            android:id="@+id/teamFragment"
             android:icon="@drawable/ic_soccer_field"
             android:title="@string/next_match" />
 
