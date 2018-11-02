@@ -18,7 +18,7 @@ import com.adit.footballclub.adapter.ClubAdapter
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.ext.hide
 import com.adit.footballclub.ext.show
-import com.adit.footballclub.viewmodel.ActivityMainViewModel
+import com.adit.footballclub.viewmodel.EventViewModel
 import com.adit.footballclub.viewmodel.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_favorite.*
@@ -30,7 +30,7 @@ class FavoriteFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    lateinit var activityMainViewModel: ActivityMainViewModel
+    lateinit var eventViewModel: EventViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -45,20 +45,20 @@ class FavoriteFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        activityMainViewModel = ViewModelProviders.of(this, viewModelFactory)[ActivityMainViewModel::class.java]
-        activityMainViewModel.getListEvents().observe(this, Observer {
+        eventViewModel = ViewModelProviders.of(this, viewModelFactory)[EventViewModel::class.java]
+        eventViewModel.getListEvents().observe(this, Observer {
             if (it != null){
                 progressbarFavMatch.hide()
                 rvMatchFav.show()
                 initRV(it)
             }
         })
-        activityMainViewModel.getListEventsError().observe(this, Observer {
+        eventViewModel.getListEventsError().observe(this, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
         progressbarFavMatch.show()
         rvMatchFav.hide()
-        activityMainViewModel.getEventsfromDB()
+        eventViewModel.getEventsfromDB()
     }
 
     private fun initRV(it: List<Events>) {
@@ -71,7 +71,7 @@ class FavoriteFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        activityMainViewModel.getListEvents().value = null
+        eventViewModel.getListEvents().value = null
 
     }
 }

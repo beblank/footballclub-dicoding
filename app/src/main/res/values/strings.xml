@@ -18,4 +18,5 @@
     <string name="lineups">Lineups</string>
     <string name="favorite">Favorite</string>
     <string name="prev_match">Prev Match</string>
+    <string name="upcoming">UPCOMING</string>
 </resources>

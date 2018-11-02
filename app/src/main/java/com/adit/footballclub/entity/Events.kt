@@ -23,6 +23,10 @@ data class Events(
     @ColumnInfo(name ="date")
     var dateStr:String?,
 
+    @SerializedName("strEvent")
+    @ColumnInfo(name ="event_name")
+    var eventStr:String?,
+
     @SerializedName("idAwayTeam")
     @ColumnInfo(name ="id_away")
     var idAway: String,

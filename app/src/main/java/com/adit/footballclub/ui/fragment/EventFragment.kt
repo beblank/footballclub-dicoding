@@ -19,24 +19,24 @@ import com.adit.footballclub.entity.Events
 import com.adit.footballclub.ext.hide
 import com.adit.footballclub.ext.show
 import com.adit.footballclub.utils.Const
-import com.adit.footballclub.viewmodel.ActivityMainViewModel
+import com.adit.footballclub.viewmodel.EventViewModel
 import com.adit.footballclub.viewmodel.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_prev_match.*
+import kotlinx.android.synthetic.main.fragment_event.*
 import javax.inject.Inject
 
 
-class PrevMatchFragment : Fragment() {
+class EventFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    lateinit var activityMainViewModel: ActivityMainViewModel
+    lateinit var eventViewModel: EventViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_prev_match, container, false)
+        return inflater.inflate(R.layout.fragment_event, container, false)
     }
 
     override fun onAttach(context: Context?) {
@@ -46,26 +46,33 @@ class PrevMatchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activityMainViewModel = ViewModelProviders.of(this, viewModelFactory)[ActivityMainViewModel::class.java]
-        activityMainViewModel.getListEvents().observe(this, Observer {
+        eventViewModel = ViewModelProviders.of(requireActivity(), viewModelFactory)[EventViewModel::class.java]
+        eventViewModel.getListEvents().observe(this, Observer {
             if (it != null){
-                progressbarPrevMatch.hide()
-                rvMatchPrev.show()
+                progressbarMatch.hide()
+                rvMatch.show()
                 initRV(it)
             }
         })
-        activityMainViewModel.getListEventsError().observe(this, Observer {
+        eventViewModel.getListEventsError().observe(this, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
-        progressbarPrevMatch.show()
-        rvMatchPrev.hide()
-        activityMainViewModel.getEventsfromApi(Const.lastMatchTab)
+        eventViewModel.getSelectedTab().observe(this, Observer{
+            progressbarMatch.show()
+            rvMatch.hide()
+            eventViewModel.getEventsfromApi(it ?: 0)
+        })
     }
 
     private fun initRV(it: List<Events>) {
-        Log.d("dodol", "$it")
-        rvMatchPrev.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rvMatchPrev.adapter = ClubAdapter(it)
+        Log.d("dodol", " init rv$it")
+        rvMatch.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        rvMatch.adapter = ClubAdapter(it)
+    }
+
+    override fun onDestroy() {
+        eventViewModel.disposeElements()
+        super.onDestroy()
     }
 
 }

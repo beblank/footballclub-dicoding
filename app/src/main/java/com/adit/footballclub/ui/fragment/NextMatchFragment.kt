@@ -19,7 +19,7 @@ import com.adit.footballclub.entity.Events
 import com.adit.footballclub.ext.hide
 import com.adit.footballclub.ext.show
 import com.adit.footballclub.utils.Const
-import com.adit.footballclub.viewmodel.ActivityMainViewModel
+import com.adit.footballclub.viewmodel.EventViewModel
 import com.adit.footballclub.viewmodel.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_next_match.*
@@ -30,7 +30,7 @@ class NextMatchFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    lateinit var activityMainViewModel: ActivityMainViewModel
+    lateinit var eventViewModel: EventViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -45,20 +45,20 @@ class NextMatchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activityMainViewModel = ViewModelProviders.of(this, viewModelFactory)[ActivityMainViewModel::class.java]
-        activityMainViewModel.getListEvents().observe(this, Observer {
+        eventViewModel = ViewModelProviders.of(this, viewModelFactory)[EventViewModel::class.java]
+        eventViewModel.getListEvents().observe(this, Observer {
             if (it != null){
                 progressbarNextMatch.hide()
                 rvMatchNext.show()
                 initRV(it)
             }
         })
-        activityMainViewModel.getListEventsError().observe(this, Observer {
+        eventViewModel.getListEventsError().observe(this, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
         progressbarNextMatch.show()
         rvMatchNext.hide()
-        activityMainViewModel.getEventsfromApi(Const.nextMatchTab)
+        eventViewModel.getEventsfromApi(Const.nextMatchTab)
     }
 
     private fun initRV(it: List<Events>) {
