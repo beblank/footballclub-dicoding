@@ -31,14 +31,14 @@ class EventViewModelTest:BaseTest(){
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     lateinit var activity:FragmentActivity
-    lateinit var viewModel:ActivityMainViewModel
+    lateinit var viewModel:EventViewModel
     lateinit var detailViewModel:DetailActivityViewModel
 
     @Before
     override fun setup(){
         super.setup()
         activity = Robolectric.setupActivity(FragmentActivity::class.java)
-        viewModel = ViewModelProviders.of(activity, viewModelFactory)[ActivityMainViewModel::class.java]
+        viewModel = ViewModelProviders.of(activity, viewModelFactory)[EventViewModel::class.java]
         detailViewModel = ViewModelProviders.of(activity, viewModelFactory)[DetailActivityViewModel::class.java]
 
     }
@@ -90,6 +90,7 @@ class EventViewModelTest:BaseTest(){
                 "",
                 "",
                 "",
+                "",
                 ""))
         viewModel.getEventsfromDB()
         assertNotEquals(null, viewModel.getListEvents().value, "event should be not null")
@@ -101,6 +102,7 @@ class EventViewModelTest:BaseTest(){
     fun deleteEventfromDB(){
         assertEquals(null, viewModel.getListEvents().value, "check if event still null")
         val event = Events("delete",
+                "",
                 "",
                 "",
                 "",
