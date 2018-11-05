@@ -12,6 +12,7 @@ import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.View
 import android.view.ViewGroup
+import com.adit.footballclub.EspressoIdlingResource
 import com.adit.footballclub.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -62,6 +63,8 @@ class ActivityTest {
                         isDisplayed()))
         bottomNavigationItemView3.perform(click())
 
+        EspressoIdlingResource.increment()
+
         val recyclerView = onView(
                 allOf(withId(R.id.rvMatchPrev),
                         childAtPosition(
@@ -72,7 +75,7 @@ class ActivityTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        Thread.sleep(700)
+        EspressoIdlingResource.decrement()
 
         val actionMenuItemView = onView(
                 allOf(withId(R.id.menu_fav), withContentDescription("Favorite"),
@@ -84,6 +87,7 @@ class ActivityTest {
                         isDisplayed()))
         actionMenuItemView.perform(click())
 
+        EspressoIdlingResource.increment()
         val appCompatImageButton = onView(
                 childAtPosition(
                         allOf(withId(R.id.toolbar),
@@ -96,7 +100,7 @@ class ActivityTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        Thread.sleep(700)
+        EspressoIdlingResource.decrement()
 
         val bottomNavigationItemView4 = onView(
                 allOf(withId(R.id.favoriteFragment), withContentDescription("Favorite"),
@@ -108,6 +112,7 @@ class ActivityTest {
                         isDisplayed()))
         bottomNavigationItemView4.perform(click())
 
+        EspressoIdlingResource.increment()
         val recyclerView2 = onView(
                 allOf(withId(R.id.rvMatchFav),
                         childAtPosition(
@@ -118,7 +123,7 @@ class ActivityTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        Thread.sleep(700)
+        EspressoIdlingResource.decrement()
 
         val actionMenuItemView2 = onView(
                 allOf(withId(R.id.menu_fav), withContentDescription("Favorite"),
@@ -130,6 +135,7 @@ class ActivityTest {
                         isDisplayed()))
         actionMenuItemView2.perform(click())
 
+        EspressoIdlingResource.increment()
         val appCompatImageButton2 = onView(
                 childAtPosition(
                         allOf(withId(R.id.toolbar),
@@ -142,7 +148,7 @@ class ActivityTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        Thread.sleep(700)
+        EspressoIdlingResource.decrement()
 
         val bottomNavigationItemView5 = onView(
                 allOf(withId(R.id.nextMatchFragment), withContentDescription("Next Match"),
@@ -154,12 +160,14 @@ class ActivityTest {
                         isDisplayed()))
         bottomNavigationItemView5.perform(click())
 
+        EspressoIdlingResource.increment()
         val recyclerView3 = onView(
                 allOf(withId(R.id.rvMatchNext),
                         childAtPosition(
                                 withClassName(`is`("android.widget.FrameLayout")),
                                 1)))
         recyclerView3.perform(actionOnItemAtPosition<ViewHolder>(0, click()))
+        EspressoIdlingResource.decrement()
     }
 
     private fun childAtPosition(
