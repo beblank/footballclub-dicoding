@@ -15,7 +15,8 @@
             app:tabGravity="fill"
             android:paddingBottom="@dimen/very_small_margin"/>
 
-    <Spinner android:layout_width="match_parent"
+    <Spinner android:id="@+id/spinner_event"
+             android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:entries="@array/leagueArray"
              android:paddingBottom="@dimen/very_small_margin" />

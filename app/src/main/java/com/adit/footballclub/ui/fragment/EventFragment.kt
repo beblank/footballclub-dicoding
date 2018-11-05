@@ -32,6 +32,8 @@ class EventFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
 
     lateinit var eventViewModel: EventViewModel
+    lateinit var leagueID:String
+    var tabPos:Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -54,13 +56,20 @@ class EventFragment : Fragment() {
                 initRV(it)
             }
         })
+        eventViewModel.getLeagueID().observe(this, Observer {
+            progressbarMatch.show()
+            rvMatch.hide()
+            leagueID = it ?: Const.id
+            eventViewModel.getEventsfromApi(it ?: Const.id, tabPos)
+        })
         eventViewModel.getListEventsError().observe(this, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
         eventViewModel.getSelectedTab().observe(this, Observer{
             progressbarMatch.show()
             rvMatch.hide()
-            eventViewModel.getEventsfromApi(it ?: 0)
+            tabPos = it ?: 0
+            eventViewModel.getEventsfromApi(leagueID, it ?: 0)
         })
     }
 

@@ -16,20 +16,23 @@ class EventViewModel @Inject constructor(
     private val selectedTab:MutableLiveData<Int> = MutableLiveData()
     private val listEvents:MutableLiveData<List<Events>> = MutableLiveData()
     private val listEventsError:MutableLiveData<String> = MutableLiveData()
+    private val leagueID:MutableLiveData<String> = MutableLiveData()
     private val compositeDisposable = CompositeDisposable()
 
     init {
         selectedTab.value = Const.lastMatchTab
+        leagueID.value = Const.id
     }
 
     fun getSelectedTab() = selectedTab
     fun getListEvents():MutableLiveData<List<Events>> = listEvents
     fun getListEventsError():MutableLiveData<String> = listEventsError
+    fun getLeagueID():MutableLiveData<String> = leagueID
 
     @Singleton
-    fun getEventsfromApi(tabs:Int):Boolean{
+    fun getEventsfromApi(id:String, tabs:Int):Boolean{
         compositeDisposable.add(
-                eventsRepository.getEvents(Const.id, tabs)
+                eventsRepository.getEvents(id, tabs)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError { listEventsError.value = it.message }

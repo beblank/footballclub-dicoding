@@ -21,7 +21,7 @@
     <string name="upcoming">UPCOMING</string>
 
     <array name="leagueArray">
-        <item>English Premier League</item>
+        <item id="1042">English Premier League</item>
         <item>German Bundesliga</item>
         <item>Italian Serie A</item>
         <item>French Ligue 1</item>

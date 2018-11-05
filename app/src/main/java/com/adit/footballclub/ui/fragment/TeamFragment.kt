@@ -58,7 +58,7 @@ class TeamFragment : Fragment() {
         })
         progressbarTeam.show()
         rvTeam.hide()
-        eventViewModel.getEventsfromApi(Const.nextMatchTab)
+        eventViewModel.getEventsfromApi(Const.id, Const.nextMatchTab)
     }
 
     private fun initRV(it: List<Events>) {
