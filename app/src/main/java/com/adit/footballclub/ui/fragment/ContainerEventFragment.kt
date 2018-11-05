@@ -59,7 +59,7 @@ class ContainerEventFragment : Fragment(), TabLayout.OnTabSelectedListener {
     }
 
     private fun setupViewPager(viewpager: ViewPager) {
-        val adapter = ViewPagerAdapter(fragmentManager!!)
+        val adapter = ViewPagerAdapter(childFragmentManager!!)
         adapter.addFragment(EventFragment(), resources.getString(R.string.last_match))
         adapter.addFragment(EventFragment(), resources.getString(R.string.upcoming))
         viewpager.setAdapter(adapter)

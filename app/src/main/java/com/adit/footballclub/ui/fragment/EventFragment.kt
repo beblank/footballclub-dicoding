@@ -70,9 +70,8 @@ class EventFragment : Fragment() {
         rvMatch.adapter = ClubAdapter(it)
     }
 
-    override fun onPause() {
+    override fun onDetach() {
+        super.onDetach()
         eventViewModel.getListEvents().value = null
-        super.onPause()
     }
-
 }
