@@ -12,6 +12,7 @@ import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import java.lang.Exception
+import java.net.HttpURLConnection
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
@@ -44,6 +45,7 @@ class DetailActivityViewModelTest: BaseTest(){
 
     @Test
     fun checkHomeTeam(){
+        mockHttpResponse("home.json", HttpURLConnection.HTTP_OK)
         assertEquals(null, viewModel.getListHomeTeam().value, "home team still null")
         viewModel.getHomeTeams(homeID)
         assertNotEquals(null, viewModel.getListHomeTeam().value, "home team should be not null")
@@ -54,6 +56,7 @@ class DetailActivityViewModelTest: BaseTest(){
 
     @Test
     fun checkAwayTeam(){
+        mockHttpResponse("away.json", HttpURLConnection.HTTP_OK)
         assertEquals(null, viewModel.getListAwayTeam().value, "away team still null")
         viewModel.getAwayTeams(awayID)
         assertNotEquals(null, viewModel.getListAwayTeam().value, "away team should be not null")
