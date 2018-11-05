@@ -77,6 +77,8 @@ dependencies {
     implementation "org.jetbrains.anko:anko-commons:${rootProject.ext.ankoVersion}"
     //Picasso
     implementation "com.squareup.picasso:picasso:${rootProject.ext.picassoVersion}"
+    // Mock Web Server
+    testImplementation "com.squareup.okhttp:mockwebserver:${rootProject.ext.mockServerVersion}"
 
     //Room
     implementation "android.arch.persistence.room:runtime:${rootProject.ext.archRoomVersion}"

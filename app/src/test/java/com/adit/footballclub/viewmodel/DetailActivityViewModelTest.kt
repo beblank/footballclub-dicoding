@@ -32,6 +32,8 @@ class DetailActivityViewModelTest: BaseTest(){
     val  awayID = "133602"
     val eventId= "576570"
 
+    override fun isMockServerEnabled() = true
+
     @Before
     override fun setup(){
         super.setup()

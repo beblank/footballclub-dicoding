@@ -15,13 +15,13 @@ import org.junit.runner.RunWith
 import org.mockito.InjectMocks
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
+import java.net.HttpURLConnection
 import javax.inject.Inject
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
 @RunWith(RobolectricTestRunner::class)
 class EventViewModelTest:BaseTest(){
-
     @Rule
     @JvmField
     val rxTestRule = RxImmediateSchedulerRule()
@@ -34,6 +34,8 @@ class EventViewModelTest:BaseTest(){
     lateinit var viewModel:ActivityMainViewModel
     lateinit var detailViewModel:DetailActivityViewModel
 
+    override fun isMockServerEnabled() = true
+
     @Before
     override fun setup(){
         super.setup()
@@ -43,9 +45,9 @@ class EventViewModelTest:BaseTest(){
 
     }
 
-
     @Test
     fun checkPastEventMatch(){
+        mockHttpResponse("prevmatch.json", HttpURLConnection.HTTP_OK)
         assertEquals(null, viewModel.getListEvents().value, "check if event still null")
         viewModel.getEventsfromApi(Const.lastMatchTab)
         assertNotEquals(null, viewModel.getListEvents().value, "event should be not null")
@@ -57,6 +59,7 @@ class EventViewModelTest:BaseTest(){
 
     @Test
     fun checkNextEventMatch(){
+        mockHttpResponse("nextmatch.json", HttpURLConnection.HTTP_OK)
         assertEquals(null, viewModel.getListEvents().value, "check if event still null")
         viewModel.getEventsfromApi(Const.nextMatchTab)
         assertNotEquals(null, viewModel.getListEvents().value, "event should be not null")
