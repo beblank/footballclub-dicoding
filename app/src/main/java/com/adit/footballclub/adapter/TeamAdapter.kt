@@ -4,11 +4,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.adit.footballclub.R
 import com.adit.footballclub.entity.Team
+import com.adit.footballclub.ui.activity.TeamActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.team_item.view.*
+import org.jetbrains.anko.startActivity
 
 class TeamAdapter(val teamList:List<Team>):RecyclerView.Adapter<TeamAdapter.ViewHolder>() {
 
@@ -25,8 +26,12 @@ class TeamAdapter(val teamList:List<Team>):RecyclerView.Adapter<TeamAdapter.View
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(team: Team){
-            Picasso.get().load(team.logo).into(itemView.team_logo)
+            Picasso.get().load(team.teamLogo).into(itemView.team_logo)
             itemView.team_name.text = team.teamName
+
+            itemView.setOnClickListener {
+                itemView.context.startActivity<TeamActivity>()
+            }
         }
     }
 }

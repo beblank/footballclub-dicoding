@@ -89,12 +89,12 @@ class DetailActivity : AppCompatActivity() {
 
         teamViewModel.getListAwayTeam().observe(this, Observer{
             if (it != null){
-                Picasso.get().load(it.logo).into(img_away)
+                Picasso.get().load(it.teamLogo).into(img_away)
             }
         })
         teamViewModel.getListHomeTeam().observe(this, Observer{
             if (it != null){
-                Picasso.get().load(it.logo).into(img_home)
+                Picasso.get().load(it.teamLogo).into(img_home)
             }
         })
         teamViewModel.getListTeamError().observe(this, Observer {
