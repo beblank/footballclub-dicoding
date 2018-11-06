@@ -7,6 +7,7 @@ class Const{
         const val lastMatchTab = 0
         const val nextMatchTab = 1
         const val event = "event"
+        const val team = "team"
         const val DATABASE_NAME = "footballmatch_db"
 
     }

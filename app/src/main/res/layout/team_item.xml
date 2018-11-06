@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView android:layout_width="130dp" android:layout_height="140dp"
+<android.support.v7.widget.CardView android:layout_width="110dp" android:layout_height="140dp"
                                     xmlns:android="http://schemas.android.com/apk/res/android"
-                                    android:layout_margin="@dimen/very_small_margin">
+                                    android:layout_margin="@dimen/very_small_margin"
+                                    android:padding="@dimen/h2_margin">
 <android.support.constraint.ConstraintLayout android:id="@+id/background_team"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"

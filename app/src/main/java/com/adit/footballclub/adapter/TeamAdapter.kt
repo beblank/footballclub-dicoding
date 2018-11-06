@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.adit.footballclub.R
 import com.adit.footballclub.entity.Team
 import com.adit.footballclub.ui.activity.TeamActivity
+import com.adit.footballclub.utils.Const
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.team_item.view.*
 import org.jetbrains.anko.startActivity
@@ -30,7 +31,7 @@ class TeamAdapter(val teamList:List<Team>):RecyclerView.Adapter<TeamAdapter.View
             itemView.team_name.text = team.teamName
 
             itemView.setOnClickListener {
-                itemView.context.startActivity<TeamActivity>()
+                itemView.context.startActivity<TeamActivity>(Const.team to team)
             }
         }
     }
