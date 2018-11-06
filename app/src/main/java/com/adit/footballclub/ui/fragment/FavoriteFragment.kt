@@ -14,7 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.adit.footballclub.R
-import com.adit.footballclub.adapter.ClubAdapter
+import com.adit.footballclub.adapter.EventAdapter
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.ext.hide
 import com.adit.footballclub.ext.show
@@ -64,7 +64,7 @@ class FavoriteFragment : Fragment() {
     private fun initRV(it: List<Events>) {
         Log.d("dodol", "$it")
         rvMatchFav.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = ClubAdapter(it)
+        val adapter = EventAdapter(it)
         adapter.notifyDataSetChanged()
         rvMatchFav.adapter = adapter
     }

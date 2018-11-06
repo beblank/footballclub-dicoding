@@ -14,7 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.adit.footballclub.R
-import com.adit.footballclub.adapter.ClubAdapter
+import com.adit.footballclub.adapter.EventAdapter
 import com.adit.footballclub.entity.Events
 import com.adit.footballclub.ext.hide
 import com.adit.footballclub.ext.show
@@ -76,7 +76,7 @@ class EventFragment : Fragment() {
     private fun initRV(it: List<Events>) {
         Log.d("dodol", " init rv$it")
         rvMatch.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rvMatch.adapter = ClubAdapter(it)
+        rvMatch.adapter = EventAdapter(it)
     }
 
     override fun onDetach() {

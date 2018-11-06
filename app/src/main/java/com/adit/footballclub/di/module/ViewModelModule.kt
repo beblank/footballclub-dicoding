@@ -2,8 +2,8 @@ package com.adit.footballclub.di.module
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.adit.footballclub.viewmodel.DetailActivityViewModel
 import com.adit.footballclub.viewmodel.EventViewModel
+import com.adit.footballclub.viewmodel.TeamViewModel
 import com.adit.footballclub.viewmodel.ViewModelFactory
 import dagger.Binds
 import dagger.Module
@@ -22,6 +22,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(DetailActivityViewModel::class)
-    internal abstract fun detailActivityViewModel(viewModel: DetailActivityViewModel): ViewModel
+    @ViewModelKey(TeamViewModel::class)
+    internal abstract fun detailActivityViewModel(viewModel: TeamViewModel): ViewModel
 }

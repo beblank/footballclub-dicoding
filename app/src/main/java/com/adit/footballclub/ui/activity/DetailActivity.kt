@@ -12,7 +12,8 @@ import com.adit.footballclub.R
 import com.adit.footballclub.utils.Const
 import com.adit.footballclub.utils.Utils
 import com.adit.footballclub.entity.Events
-import com.adit.footballclub.viewmodel.DetailActivityViewModel
+import com.adit.footballclub.viewmodel.EventViewModel
+import com.adit.footballclub.viewmodel.TeamViewModel
 import com.adit.footballclub.viewmodel.ViewModelFactory
 import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
@@ -32,7 +33,8 @@ class DetailActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    lateinit var detailActivityViewModel: DetailActivityViewModel
+    lateinit var teamViewModel: TeamViewModel
+    lateinit var eventViewModel: EventViewModel
 
     lateinit var event:Events
 
@@ -69,10 +71,10 @@ class DetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.menu_fav){
             if (isFavorite){
-                detailActivityViewModel.deleteEvent(event)
+                eventViewModel.deleteEvent(event)
                 isFavorite = false
             } else {
-                detailActivityViewModel.insertEvent(event)
+                eventViewModel.insertEvent(event)
                 isFavorite = true
             }
             setFavorite()
@@ -82,41 +84,42 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setViewModel(event: Events) {
-        detailActivityViewModel = ViewModelProviders.of(this, viewModelFactory)[DetailActivityViewModel::class.java]
+        eventViewModel = ViewModelProviders.of(this, viewModelFactory)[EventViewModel::class.java]
+        teamViewModel = ViewModelProviders.of(this, viewModelFactory)[TeamViewModel::class.java]
 
-        detailActivityViewModel.getListAwayTeam().observe(this, Observer{
+        teamViewModel.getListAwayTeam().observe(this, Observer{
             if (it != null){
                 Picasso.get().load(it.logo).into(img_away)
             }
         })
-        detailActivityViewModel.getListHomeTeam().observe(this, Observer{
+        teamViewModel.getListHomeTeam().observe(this, Observer{
             if (it != null){
                 Picasso.get().load(it.logo).into(img_home)
             }
         })
-        detailActivityViewModel.getListTeamError().observe(this, Observer {
+        teamViewModel.getListTeamError().observe(this, Observer {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         })
-        detailActivityViewModel.getEventById().observe(this, Observer{
+        eventViewModel.getEventById().observe(this, Observer{
             isFavorite = true
             invalidateOptionsMenu()
         })
-        detailActivityViewModel.getInsertStatus().observe(this, Observer {
+        eventViewModel.getInsertStatus().observe(this, Observer {
             if(it!!){
                 Snackbar.make(content, "Event saved to Database", Snackbar.LENGTH_SHORT).show()
             }
 
         })
-        detailActivityViewModel.getDeleteStatus().observe(this, Observer {
+        eventViewModel.getDeleteStatus().observe(this, Observer {
             if(it!!){
                 Snackbar.make(content, "Event deleted from Database", Snackbar.LENGTH_SHORT).show()
             }
 
         })
 
-        detailActivityViewModel.getAwayTeams(event.idAway)
-        detailActivityViewModel.getHomeTeams(event.idHome)
-        detailActivityViewModel.checkEvent(event.idEvent)
+        teamViewModel.getAwayTeams(event.idAway)
+        teamViewModel.getHomeTeams(event.idHome)
+        eventViewModel.checkEvent(event.idEvent)
     }
 
     private fun setToolbar() {
@@ -154,7 +157,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        detailActivityViewModel.disposeElements()
+        eventViewModel.disposeElements()
+        teamViewModel.disposeElements()
         super.onDestroy()
     }
 }

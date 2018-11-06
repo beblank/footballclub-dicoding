@@ -18,6 +18,9 @@ class EventViewModel @Inject constructor(
     private val listEventsError:MutableLiveData<String> = MutableLiveData()
     private val leagueID:MutableLiveData<String> = MutableLiveData()
     private val compositeDisposable = CompositeDisposable()
+    private val insertStatus:MutableLiveData<Boolean> = MutableLiveData()
+    private val deleteStatus:MutableLiveData<Boolean> = MutableLiveData()
+    private val event: MutableLiveData<Events> = MutableLiveData()
 
     init {
         selectedTab.value = Const.lastMatchTab
@@ -28,6 +31,9 @@ class EventViewModel @Inject constructor(
     fun getListEvents():MutableLiveData<List<Events>> = listEvents
     fun getListEventsError():MutableLiveData<String> = listEventsError
     fun getLeagueID():MutableLiveData<String> = leagueID
+    fun getInsertStatus() = insertStatus
+    fun getDeleteStatus() = deleteStatus
+    fun getEventById() = event
 
     @Singleton
     fun getEventsfromApi(id:String, tabs:Int):Boolean{
@@ -50,6 +56,36 @@ class EventViewModel @Inject constructor(
                         .doOnError { listEventsError.value = it.message }
                         .subscribe { listEvents.value = it }
         )
+    }
+
+    fun insertEvent(events: Events){
+        compositeDisposable.add(
+                eventsRepository.insertEventtoDB(events)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnNext { insertStatus.value = true }
+                        .doOnError { insertStatus.value = false }
+                        .subscribe())
+    }
+
+    fun deleteEvent(events: Events){
+        compositeDisposable.add(
+                eventsRepository.deleteEventfromDB(events)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnNext { deleteStatus.value = true }
+                        .doOnError { deleteStatus.value = false }
+                        .subscribe()
+        )
+    }
+
+    fun checkEvent(id: String){
+        compositeDisposable.add(eventsRepository.checkFavorite(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe{
+                    event.value = it
+                })
     }
 
     fun disposeElements(){

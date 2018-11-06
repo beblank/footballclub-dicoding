@@ -12,7 +12,7 @@ import com.adit.footballclub.entity.Events
 import kotlinx.android.synthetic.main.match_item.view.*
 import org.jetbrains.anko.*
 
-class ClubAdapter(val eventList:List<Events>):RecyclerView.Adapter<ClubAdapter.ViewHolder>(){
+class EventAdapter(val eventList:List<Events>):RecyclerView.Adapter<EventAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)=
         ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.match_item,parent, false))
