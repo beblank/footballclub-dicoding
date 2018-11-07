@@ -7,6 +7,8 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,7 +71,7 @@ class TeamFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun initRV(it: List<Team>) {
-        rvTeam.layoutManager = GridLayoutManager(requireContext(), 3)
+        rvTeam.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         rvTeam.adapter = TeamAdapter(it)
     }
 

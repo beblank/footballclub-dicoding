@@ -27,7 +27,7 @@ class TeamAdapter(val teamList:List<Team>):RecyclerView.Adapter<TeamAdapter.View
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         fun bind(team: Team){
-            Picasso.get().load(team.teamLogo).into(itemView.team_logo)
+            Picasso.get().load(team.teamLogo).resize(100,100).into(itemView.team_logo)
             itemView.team_name.text = team.teamName
 
             itemView.setOnClickListener {
