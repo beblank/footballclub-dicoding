@@ -17,7 +17,7 @@
                   app:layout_constraintTop_toTopOf="parent"
                   app:layout_constraintBottom_toBottomOf="parent"
                   app:layout_constraintStart_toEndOf="@id/team_logo"
-                  android:textSize="@dimen/text_h3_size"
+                  android:textSize="@dimen/text_h1_smaller_size"
                   android:textStyle="bold"/>
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

@@ -4,6 +4,7 @@
     <dimen name="text_h3_size">15sp</dimen>
     <dimen name="text_h2_size">16sp</dimen>
     <dimen name="text_h1_size">30sp</dimen>
+    <dimen name="text_h1_smaller_size">20sp</dimen>
     <dimen name="img_size">100dp</dimen>
     <dimen name="h2_margin">16dp</dimen>
     <dimen name="small_margin">8dp</dimen>
