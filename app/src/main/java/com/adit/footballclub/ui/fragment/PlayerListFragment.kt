@@ -57,6 +57,8 @@ class PlayerListFragment : Fragment() {
         teamViewModel.getSelectedTeam().observe(this, Observer{
             if (it != null){
                 playerViewModel.getAllPlayerFromApi(it.teamName)
+                progressbarPlayerList.show()
+                rvPlayerList.hide()
             }
         })
     }

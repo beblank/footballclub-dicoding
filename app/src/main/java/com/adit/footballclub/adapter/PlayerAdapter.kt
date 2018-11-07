@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.player_item.view.*
 class PlayerAdapter(val teamList:List<Player>):RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)=
-            ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.team_item,parent, false))
+            ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.player_item,parent, false))
 
     override fun getItemCount() = teamList.size
 
