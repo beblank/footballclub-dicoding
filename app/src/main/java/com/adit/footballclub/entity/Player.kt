@@ -8,6 +8,7 @@ data class Player(
         @SerializedName("strFanart1") val playerImage:String,
         @SerializedName("idPlayer") val playerId:String,
         @SerializedName("strPosition") val playerPos:String,
-        @SerializedName("dateBorn") val playerBorn:String,
+        @SerializedName("strHeight") val playerHeight:String,
+        @SerializedName("strWeight") val playerWeight:String,
         @SerializedName("strDescriptionEN") val playerDesc:String
 )
