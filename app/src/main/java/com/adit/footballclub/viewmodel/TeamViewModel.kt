@@ -19,6 +19,7 @@ class TeamViewModel @Inject constructor(
     private val listTeamError: MutableLiveData<String> = MutableLiveData()
     private val allTeams:MutableLiveData<List<Team>> = MutableLiveData()
     private val allTeamsError:MutableLiveData<String> = MutableLiveData()
+    private val selectedTeam:MutableLiveData<Team> = MutableLiveData()
 
 
     fun getListTeamError(): MutableLiveData<String> = listTeamError
@@ -26,6 +27,7 @@ class TeamViewModel @Inject constructor(
     fun getListAwayTeam(): MutableLiveData<Team> = listAwayTeam
     fun getAllTeam(): MutableLiveData<List<Team>> = allTeams
     fun getAllTeamError(): MutableLiveData<String> = allTeamsError
+    fun getSelectedTeam():MutableLiveData<Team> = selectedTeam
 
     fun getAwayTeams(id:String){
         compositeDisposable.add(teamRepository.getTeamDetail(id)
