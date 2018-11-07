@@ -19,9 +19,13 @@ data class Events(
     @ColumnInfo(name ="id")
     val idEvent:String,
 
-    @SerializedName("strDate")
+    @SerializedName("dateEvent")
     @ColumnInfo(name ="date")
     var dateStr:String?,
+
+    @SerializedName("strTime")
+    @ColumnInfo(name ="time")
+    var eventTime:String?,
 
     @SerializedName("strEvent")
     @ColumnInfo(name ="event_name")

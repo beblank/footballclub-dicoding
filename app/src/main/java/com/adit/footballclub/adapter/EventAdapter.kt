@@ -27,7 +27,8 @@ class EventAdapter(val eventList:List<Events>):RecyclerView.Adapter<EventAdapter
     class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
 
         fun bind(event:Events){
-            itemView.txt_date.text = Utils.dateStringConverter(event.dateStr)
+            itemView.txt_date.text = Utils.dateStringConverter(event.dateStr, event.eventTime)
+            itemView.txt_time.text = Utils.timeStringConverter(event.dateStr, event.eventTime)
             itemView.txt_home_name.text = event.nameHomeTeam
             itemView.txt_home_score.text = event.homeScore
             itemView.txt_away_name.text = event.nameAwayTeam

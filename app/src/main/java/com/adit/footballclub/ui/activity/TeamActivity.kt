@@ -21,8 +21,7 @@ class TeamActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_team)
         AndroidInjection.inject(this)
-       if(savedInstanceState != null)
-           team = intent.getParcelableExtra(Const.team)
+        team = intent.getParcelableExtra(Const.team)
         setupViewPager(team_viewpager)
         toolbar.title = team.teamName
         team_tabs.setupWithViewPager(team_viewpager)

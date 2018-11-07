@@ -23,7 +23,7 @@ class EventViewModel @Inject constructor(
     private val event: MutableLiveData<Events> = MutableLiveData()
 
     init {
-        selectedTab.value = Const.lastMatchTab
+        selectedTab.value = Const.nextMatchTab
         leagueID.value = Const.id
     }
 

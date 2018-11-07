@@ -74,7 +74,6 @@ class EventFragment : Fragment() {
     }
 
     private fun initRV(it: List<Events>) {
-        Log.d("dodol", " init rv$it")
         rvMatch.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         rvMatch.adapter = EventAdapter(it)
     }
