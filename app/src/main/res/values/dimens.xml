@@ -13,4 +13,5 @@
     <dimen name="line_height">2dp</dimen>
     <dimen name="item_detail_text_width">150dp</dimen>
     <dimen name="team_logo_img_size">200dp</dimen>
+    <dimen name="player_size">50dp</dimen>
 </resources>

@@ -2,7 +2,6 @@ package com.adit.footballclub.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.adit.footballclub.entity.ListPlayer
 import com.adit.footballclub.entity.Player
 import com.adit.footballclub.entity.repository.PlayerRepository
 import io.reactivex.android.schedulers.AndroidSchedulers

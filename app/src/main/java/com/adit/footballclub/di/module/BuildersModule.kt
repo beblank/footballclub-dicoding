@@ -37,5 +37,8 @@ abstract class BuildersModule{
 
     @ContributesAndroidInjector
     abstract fun contributeTeamDetailFragment(): TeamDetailFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributePlayerListFragment(): PlayerListFragment
 }
 

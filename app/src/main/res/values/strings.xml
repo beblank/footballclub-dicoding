@@ -19,6 +19,8 @@
     <string name="favorite">Favorite</string>
     <string name="prev_match">Last</string>
     <string name="upcoming">Next</string>
+    <string name="overview">OVERVIEW</string>
+    <string name="players">PLAYERS</string>
 
     <array name="leagueArray">
         <item id="1042">English Premier League</item>

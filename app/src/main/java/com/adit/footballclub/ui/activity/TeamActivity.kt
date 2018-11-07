@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import com.adit.footballclub.R
 import com.adit.footballclub.entity.Team
+import com.adit.footballclub.ui.fragment.PlayerListFragment
 import com.adit.footballclub.ui.fragment.TeamDetailFragment
 import com.adit.footballclub.ui.fragment.ViewPagerAdapter
 import com.adit.footballclub.utils.Const
@@ -49,8 +50,8 @@ class TeamActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
 
     private fun setupViewPager(vp: ViewPager) {
         val adapter = ViewPagerAdapter(supportFragmentManager!!)
-        adapter.addFragment(TeamDetailFragment(), resources.getString(R.string.last_match))
-        adapter.addFragment(TeamDetailFragment(), resources.getString(R.string.upcoming))
+        adapter.addFragment(TeamDetailFragment(), resources.getString(R.string.overview))
+        adapter.addFragment(PlayerListFragment(), resources.getString(R.string.players))
         vp.adapter = adapter
     }
 
