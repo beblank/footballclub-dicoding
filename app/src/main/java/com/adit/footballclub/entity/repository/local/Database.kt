@@ -4,7 +4,7 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import com.adit.footballclub.entity.Events
 
-@Database(entities = [(Events::class)], version = 2, exportSchema = false)
+@Database(entities = [(Events::class)], version = 3, exportSchema = false)
 abstract class Database:RoomDatabase(){
     abstract fun eventDao():EventDao
 }

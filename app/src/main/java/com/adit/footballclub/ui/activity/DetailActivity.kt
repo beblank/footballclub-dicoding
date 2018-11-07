@@ -137,6 +137,7 @@ class DetailActivity : AppCompatActivity() {
         txt_away_name.text = event.nameAwayTeam
         txt_away_score.text = event.awayScore
         txt_date.text = Utils.dateStringConverter(event.dateStr, event.eventTime)
+        txt_time.text = Utils.timeStringConverter(event.dateStr, event.eventTime)
 
         txt_home_shots.text = event.homeShots
         txt_home_goals.text = event.homeGoalDetails

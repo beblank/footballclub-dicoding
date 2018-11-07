@@ -19,7 +19,7 @@ class Utils{
             var result = ""
             val s = "$date $time"
             if (date != null && time != null){
-                result = dateTimeParser(s, "yyyy-MM-dd HH:mm:ss", "HH:mm:ss")
+                result = dateTimeParser(s, "yyyy-MM-dd HH:mm:ss", "HH:mm")
             }
             return result
         }
