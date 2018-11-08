@@ -77,9 +77,4 @@ class EventFragment : Fragment() {
         rvMatch.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         rvMatch.adapter = EventAdapter(it)
     }
-
-    override fun onDetach() {
-        super.onDetach()
-        eventViewModel.getListEvents().value = null
-    }
 }
