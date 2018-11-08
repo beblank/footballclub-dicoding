@@ -33,6 +33,8 @@ class TeamViewModel @Inject constructor(
     fun getAllTeamError(): MutableLiveData<String> = allTeamsError
     fun getSelectedTeam():MutableLiveData<Team> = selectedTeam
     fun getFavTeam():MutableLiveData<Team> = favTeam
+    fun getInsertStatus():MutableLiveData<Boolean> = insertStatus
+    fun getDeleteStatus():MutableLiveData<Boolean> = deleteStatus
 
 
     fun getAwayTeams(id:String){
