@@ -6,12 +6,12 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Player(
-        @SerializedName("strPlayer") val playerName:String,
-        @SerializedName("strCutout") val playerPhoto:String,
-        @SerializedName("strFanart1") val playerImage:String,
-        @SerializedName("idPlayer") val playerId:String,
-        @SerializedName("strPosition") val playerPos:String,
-        @SerializedName("strHeight") val playerHeight:String,
-        @SerializedName("strWeight") val playerWeight:String,
-        @SerializedName("strDescriptionEN") val playerDesc:String
+        @SerializedName("strPlayer") var playerName:String?,
+        @SerializedName("strCutout") var playerPhoto:String?,
+        @SerializedName("strFanart1") var playerImage:String?,
+        @SerializedName("idPlayer") var playerId:String?,
+        @SerializedName("strPosition") var playerPos:String?,
+        @SerializedName("strHeight") var playerHeight:String?,
+        @SerializedName("strWeight") var playerWeight:String?,
+        @SerializedName("strDescriptionEN") var playerDesc:String?
 ):Parcelable

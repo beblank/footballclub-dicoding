@@ -23,6 +23,8 @@
     <string name="players">PLAYERS</string>
     <string name="matches">MATCHES</string>
     <string name="teams">TEAMS</string>
+    <string name="height_m">Height (m)</string>
+    <string name="weight_kg">Weight (Kg)</string>
 
     <array name="leagueArray">
         <item id="1042">English Premier League</item>
