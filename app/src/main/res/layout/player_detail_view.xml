@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_h2_size"
-            android:padding="@dimen/very_small_margin"
+            android:padding="@dimen/line_height"
             android:text="@string/weight_kg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guideline"
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_h2_size"
-            android:padding="@dimen/very_small_margin"
+            android:padding="@dimen/line_height"
             android:text="@string/height_m"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_h1_large"
             android:textStyle="bold"
-            android:padding="@dimen/very_small_margin"
+            android:padding="@dimen/line_height"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weight"/>
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_h1_large"
             android:textStyle="bold"
-            android:padding="@dimen/very_small_margin"
+            android:padding="@dimen/line_height"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/height"/>
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_h3_size"
-            android:padding="@dimen/very_small_margin"
+            android:padding="@dimen/line_height"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/player_height"/>
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_h3_size"
-            android:padding="@dimen/very_small_margin"
+            android:padding="@dimen/line_height"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/player_separator"/>

@@ -17,9 +17,17 @@ class PlayerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_player)
         AndroidInjection.inject(this)
         val player:Player = intent.getParcelableExtra(Const.player)
+        setToolbar(player)
+        setupView(player)
+    }
+
+    private fun setToolbar(player: Player) {
         setSupportActionBar(toolbar)
         supportActionBar?.setTitle(player.playerName)
-        setupView(player)
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
     private fun setupView(player: Player) {
