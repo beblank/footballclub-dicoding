@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,23 +50,24 @@ class PlayerListFragment : Fragment() {
         playerViewModel = ViewModelProviders.of(requireActivity(), viewModelFactory)[PlayerViewModel::class.java]
         playerViewModel.getAllPlayer().observe(this, Observer {
             if (it != null){
+                initRV(it)
                 progressbarPlayerList.hide()
                 rvPlayerList.show()
-                initRV(it)
             }
         })
         teamViewModel.getSelectedTeam().observe(this, Observer{
             if (it != null){
                 playerViewModel.getAllPlayerFromApi(it.teamName)
                 progressbarPlayerList.show()
-                rvPlayerList.hide()
+                //rvPlayerList.hide()
             }
         })
     }
 
     private fun initRV(it: List<Player>) {
-        rvMatch.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        rvMatch.adapter = PlayerAdapter(it)
+        rvPlayerList.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        rvPlayerList.adapter = PlayerAdapter(it)
+        Log.d("dodol", "$it")
     }
 
 

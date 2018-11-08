@@ -31,6 +31,7 @@
                     android:id="@+id/team_image"
                     android:layout_width="@dimen/team_logo_img_size"
                     android:layout_height="@dimen/team_logo_img_size"
+                    android:paddingTop="@dimen/very_small_margin"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="centerCrop"
                     android:fitsSystemWindows="true"/>
