@@ -27,6 +27,9 @@ abstract class BuildersModule{
     abstract fun contributeContainerEventMatchFragment(): ContainerEventFragment
 
     @ContributesAndroidInjector
+    abstract fun contributeContainerFavMatchFragment(): ContainerFavFragment
+
+    @ContributesAndroidInjector
     abstract fun contributeEventMatchFragment(): EventFragment
 
     @ContributesAndroidInjector

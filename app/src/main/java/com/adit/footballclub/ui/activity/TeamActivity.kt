@@ -6,10 +6,10 @@ import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import com.adit.footballclub.R
+import com.adit.footballclub.adapter.ViewPagerAdapter
 import com.adit.footballclub.entity.Team
 import com.adit.footballclub.ui.fragment.PlayerListFragment
 import com.adit.footballclub.ui.fragment.TeamDetailFragment
-import com.adit.footballclub.ui.fragment.ViewPagerAdapter
 import com.adit.footballclub.utils.Const
 import com.adit.footballclub.viewmodel.TeamViewModel
 import com.adit.footballclub.viewmodel.ViewModelFactory

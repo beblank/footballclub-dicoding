@@ -21,6 +21,8 @@
     <string name="upcoming">Next</string>
     <string name="overview">OVERVIEW</string>
     <string name="players">PLAYERS</string>
+    <string name="matches">MATCHES</string>
+    <string name="teams">TEAMS</string>
 
     <array name="leagueArray">
         <item id="1042">English Premier League</item>

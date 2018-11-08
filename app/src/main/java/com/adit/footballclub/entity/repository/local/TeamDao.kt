@@ -7,16 +7,16 @@ import io.reactivex.Single
 
 @Dao
 interface TeamDao{
-    @Query("SELECT * FROM event")
+    @Query("SELECT * FROM team")
     fun getTeam(): Single<List<Team>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTeam(event:Team)
+    fun insertTeam(team:Team)
 
     @Delete
-    fun deleteTeam(event:Team)
+    fun deleteTeam(team:Team)
 
-    @Query("SELECT * FROM event WHERE id = :id")
+    @Query("SELECT * FROM team WHERE id = :id")
     fun searchAddedID(id:String): Maybe<Team>
 
 }
