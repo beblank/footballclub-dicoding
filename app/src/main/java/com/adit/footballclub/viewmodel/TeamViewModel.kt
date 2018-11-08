@@ -9,6 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class TeamViewModel @Inject constructor(
         private val teamRepository: TeamRepository): ViewModel(){
@@ -20,6 +21,9 @@ class TeamViewModel @Inject constructor(
     private val allTeams:MutableLiveData<List<Team>> = MutableLiveData()
     private val allTeamsError:MutableLiveData<String> = MutableLiveData()
     private val selectedTeam:MutableLiveData<Team> = MutableLiveData()
+    private val favTeam:MutableLiveData<Team> = MutableLiveData()
+    private val insertStatus:MutableLiveData<Boolean> = MutableLiveData()
+    private val deleteStatus:MutableLiveData<Boolean> = MutableLiveData()
 
 
     fun getListTeamError(): MutableLiveData<String> = listTeamError
@@ -28,6 +32,8 @@ class TeamViewModel @Inject constructor(
     fun getAllTeam(): MutableLiveData<List<Team>> = allTeams
     fun getAllTeamError(): MutableLiveData<String> = allTeamsError
     fun getSelectedTeam():MutableLiveData<Team> = selectedTeam
+    fun getFavTeam():MutableLiveData<Team> = favTeam
+
 
     fun getAwayTeams(id:String){
         compositeDisposable.add(teamRepository.getTeamDetail(id)
@@ -62,6 +68,47 @@ class TeamViewModel @Inject constructor(
 
     fun disposeElements(){
         compositeDisposable.dispose()
+    }
+
+    @Singleton
+    fun getTeamfromDB(){
+        compositeDisposable.add(
+                teamRepository.getTeamsFromDB()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnError { allTeamsError.value = it.message }
+                        .subscribe { allTeams.value = it }
+        )
+    }
+
+    fun insertTeam(team: Team){
+        compositeDisposable.add(
+                teamRepository.insertTeamtoDB(team)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnNext { insertStatus.value = true }
+                        .doOnError { insertStatus.value = false }
+                        .subscribe())
+    }
+
+    fun deleteTeam(team: Team){
+        compositeDisposable.add(
+                teamRepository.deleteTeamfromDB(team)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnNext { deleteStatus.value = true }
+                        .doOnError { deleteStatus.value = false }
+                        .subscribe()
+        )
+    }
+
+    fun checkTeam(id: String){
+        compositeDisposable.add(teamRepository.checkFavorite(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe{
+                    favTeam.value = it
+                })
     }
 
 
