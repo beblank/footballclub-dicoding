@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.adit.footballclub.R
 import com.adit.footballclub.entity.Player
+import com.adit.footballclub.ui.activity.PlayerActivity
+import com.adit.footballclub.utils.Const
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.player_item.view.*
+import org.jetbrains.anko.startActivity
 
 class PlayerAdapter(val teamList:List<Player>):RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
 
@@ -27,9 +30,9 @@ class PlayerAdapter(val teamList:List<Player>):RecyclerView.Adapter<PlayerAdapte
             itemView.player_name.text = player.playerName
             itemView.player_position.text = player.playerPos
 
-//            itemView.setOnClickListener {
-//                itemView.context.startActivity<TeamActivity>(Const.team to player)
-//            }
+            itemView.setOnClickListener {
+                itemView.context.startActivity<PlayerActivity>(Const.player to player)
+            }
         }
     }
 }

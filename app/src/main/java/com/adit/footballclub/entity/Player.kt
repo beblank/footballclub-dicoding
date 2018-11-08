@@ -1,7 +1,10 @@
 package com.adit.footballclub.entity
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Player(
         @SerializedName("strPlayer") val playerName:String,
         @SerializedName("strCutout") val playerPhoto:String,
@@ -11,4 +14,4 @@ data class Player(
         @SerializedName("strHeight") val playerHeight:String,
         @SerializedName("strWeight") val playerWeight:String,
         @SerializedName("strDescriptionEN") val playerDesc:String
-)
+):Parcelable
