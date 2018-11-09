@@ -57,12 +57,12 @@ class TeamActivity : AppCompatActivity(){
         })
         teamViewModel.getInsertStatus().observe(this, Observer {
             if(it!!){
-                Snackbar.make(content, "Event saved to Database", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(content, "Team added to favorite", Snackbar.LENGTH_SHORT).show()
             }
         })
         teamViewModel.getDeleteStatus().observe(this, Observer {
             if(it!!){
-                Snackbar.make(content, "Event deleted from Database", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(content, "Team removed from favorite", Snackbar.LENGTH_SHORT).show()
             }
         })
 

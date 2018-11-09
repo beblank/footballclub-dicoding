@@ -106,13 +106,13 @@ class DetailActivity : AppCompatActivity() {
         })
         eventViewModel.getInsertStatus().observe(this, Observer {
             if(it!!){
-                Snackbar.make(content, "Event saved to Database", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(content, "Event added to favorite", Snackbar.LENGTH_SHORT).show()
             }
 
         })
         eventViewModel.getDeleteStatus().observe(this, Observer {
             if(it!!){
-                Snackbar.make(content, "Event deleted from Database", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(content, "Event removed from favorite", Snackbar.LENGTH_SHORT).show()
             }
 
         })
