@@ -21,7 +21,8 @@ android:orientation="vertical">
                 android:background="?attr/colorPrimary"
                 app:titleTextColor="@color/white"
                 android:elevation="4dp"
-                app:collapseIcon="@drawable/ic_arrow_back_white_24dp"/>
+                app:collapseIcon="@drawable/ic_arrow_back_white_24dp"
+                android:theme="@style/AppTheme.Toolbar"/>
 
     </android.support.design.widget.AppBarLayout>
 
