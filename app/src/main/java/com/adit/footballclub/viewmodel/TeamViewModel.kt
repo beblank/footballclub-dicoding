@@ -24,6 +24,8 @@ class TeamViewModel @Inject constructor(
     private val favTeam:MutableLiveData<Team> = MutableLiveData()
     private val insertStatus:MutableLiveData<Boolean> = MutableLiveData()
     private val deleteStatus:MutableLiveData<Boolean> = MutableLiveData()
+    private val filteredTeam:MutableLiveData<List<Team>> = MutableLiveData()
+    private val isFiltered:MutableLiveData<Boolean> = MutableLiveData()
 
 
     fun getListTeamError(): MutableLiveData<String> = listTeamError
@@ -35,7 +37,13 @@ class TeamViewModel @Inject constructor(
     fun getFavTeam():MutableLiveData<Team> = favTeam
     fun getInsertStatus():MutableLiveData<Boolean> = insertStatus
     fun getDeleteStatus():MutableLiveData<Boolean> = deleteStatus
+    fun getFilteredTeam():MutableLiveData<List<Team>> = filteredTeam
+    fun getIsFiltered():MutableLiveData<Boolean> = isFiltered
 
+
+    init {
+        isFiltered.value = false
+    }
 
     fun getAwayTeams(id:String){
         compositeDisposable.add(teamRepository.getTeamDetail(id)
@@ -78,8 +86,7 @@ class TeamViewModel @Inject constructor(
                 teamRepository.getTeamsFromDB()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .doOnError { allTeamsError.value = it.message }
-                        .subscribe { allTeams.value = it }
+                        .subscribe ({ allTeams.value = it },{allTeamsError.value = it.message})
         )
     }
 
@@ -111,6 +118,13 @@ class TeamViewModel @Inject constructor(
                 .subscribe{
                     favTeam.value = it
                 })
+    }
+
+    fun filterTeam(filter:String){
+        if (allTeams.value != null){
+            filteredTeam.value = allTeams.value!!.filter { team -> team.teamName!!.toLowerCase().contains(filter.toLowerCase()) }
+        }
+
     }
 
 

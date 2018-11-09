@@ -46,8 +46,7 @@ class EventViewModel @Inject constructor(
                 eventsRepository.getEvents(id, tabs)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError { listEventsError.value = it.message }
-                .subscribe { listEvents.value = it.events }
+                .subscribe ({ listEvents.value = it.events },{listEventsError.value = it.message})
         )
         return true
     }
@@ -65,8 +64,7 @@ class EventViewModel @Inject constructor(
                 eventsRepository.getEventsFromDB()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .doOnError { listEventsError.value = it.message }
-                        .subscribe { listEvents.value = it }
+                        .subscribe ({ listEvents.value = it },{listEventsError.value = it.message})
         )
     }
 

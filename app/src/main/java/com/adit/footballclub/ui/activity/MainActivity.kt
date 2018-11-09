@@ -14,6 +14,7 @@ import com.adit.footballclub.viewmodel.ViewModelFactory
 import javax.inject.Inject
 import android.support.v4.view.MenuItemCompat
 import android.support.v7.widget.SearchView
+import com.adit.footballclub.viewmodel.TeamViewModel
 
 
 class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener {
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener {
     lateinit var viewModelFactory: ViewModelFactory
 
     lateinit var eventViewModel: EventViewModel
+    lateinit var teamViewModel: TeamViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +38,12 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener {
         AndroidInjection.inject(this)
 
         eventViewModel = ViewModelProviders.of(this, viewModelFactory)[EventViewModel::class.java]
+        teamViewModel = ViewModelProviders.of(this, viewModelFactory)[TeamViewModel::class.java]
     }
 
     override fun onDestroy() {
         eventViewModel.disposeElements()
+        teamViewModel.disposeElements()
         super.onDestroy()
     }
 
@@ -58,10 +62,13 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener {
     override fun onQueryTextChange(query: String?): Boolean {
         if (!query.isNullOrBlank()){
             eventViewModel.getIsFiltered().value = true
-            eventViewModel.filterEvent(query ?: "")
-        } else
+            teamViewModel.getIsFiltered().value = true
+            eventViewModel.filterEvent(query)
+            teamViewModel.filterTeam(query)
+        } else {
             eventViewModel.getIsFiltered().value = false
-
+            teamViewModel.getIsFiltered().value = false
+        }
         return true
     }
 

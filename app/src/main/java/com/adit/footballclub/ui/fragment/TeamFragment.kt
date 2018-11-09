@@ -45,12 +45,20 @@ class TeamFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        teamViewModel = ViewModelProviders.of(this, viewModelFactory)[TeamViewModel::class.java]
+        teamViewModel = ViewModelProviders.of(requireActivity(), viewModelFactory)[TeamViewModel::class.java]
         teamViewModel.getAllTeam().observe(this, Observer {
             if (it != null){
                 progressbarTeam.hide()
                 rvTeam.show()
                 initRV(it)
+            }
+        })
+        teamViewModel.getIsFiltered().observe(this, Observer{
+            if (teamViewModel.getAllTeam().value != null && teamViewModel.getFilteredTeam().value != null){
+                if(it!!)
+                    initRV(teamViewModel.getFilteredTeam().value!!)
+                else
+                    initRV(teamViewModel.getAllTeam().value!!)
             }
         })
         teamViewModel.getAllTeamError().observe(this, Observer {
