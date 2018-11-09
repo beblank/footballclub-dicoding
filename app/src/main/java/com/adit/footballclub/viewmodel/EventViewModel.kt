@@ -21,10 +21,13 @@ class EventViewModel @Inject constructor(
     private val insertStatus:MutableLiveData<Boolean> = MutableLiveData()
     private val deleteStatus:MutableLiveData<Boolean> = MutableLiveData()
     private val event: MutableLiveData<Events> = MutableLiveData()
+    private val filteredEvent:MutableLiveData<List<Events>> = MutableLiveData()
+    private val isFiltered:MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         selectedTab.value = Const.nextMatchTab
         leagueID.value = Const.id
+        isFiltered.value = false
     }
 
     fun getSelectedTab() = selectedTab
@@ -34,6 +37,8 @@ class EventViewModel @Inject constructor(
     fun getInsertStatus() = insertStatus
     fun getDeleteStatus() = deleteStatus
     fun getEventById() = event
+    fun getIsFiltered()= isFiltered
+    fun getFilteredEvent() = filteredEvent
 
     @Singleton
     fun getEventsfromApi(id:String, tabs:Int):Boolean{
@@ -45,6 +50,13 @@ class EventViewModel @Inject constructor(
                 .subscribe { listEvents.value = it.events }
         )
         return true
+    }
+
+    fun filterEvent(filter:String){
+        if (listEvents.value != null){
+            filteredEvent.value = listEvents.value!!.filter { event -> event.eventStr!!.toLowerCase().contains(filter.toLowerCase()) }
+        }
+
     }
 
     @Singleton

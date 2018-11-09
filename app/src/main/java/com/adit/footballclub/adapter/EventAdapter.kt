@@ -23,7 +23,6 @@ class EventAdapter(val eventList:List<Events>):RecyclerView.Adapter<EventAdapter
         holder.bind(eventList[position])
     }
 
-
     class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
 
         fun bind(event:Events){

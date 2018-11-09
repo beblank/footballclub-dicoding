@@ -56,6 +56,14 @@ class EventFragment : Fragment() {
                 initRV(it)
             }
         })
+        eventViewModel.getIsFiltered().observe(this, Observer{
+            if (eventViewModel.getListEvents().value != null && eventViewModel.getFilteredEvent().value != null){
+                if(it!!)
+                    initRV(eventViewModel.getFilteredEvent().value!!)
+                else
+                    initRV(eventViewModel.getListEvents().value!!)
+            }
+        })
         eventViewModel.getLeagueID().observe(this, Observer {
             progressbarMatch.show()
             rvMatch.hide()

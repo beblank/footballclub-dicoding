@@ -55,7 +55,13 @@ class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener {
         return true
     }
 
-    override fun onQueryTextChange(p0: String?): Boolean {
+    override fun onQueryTextChange(query: String?): Boolean {
+        if (!query.isNullOrBlank()){
+            eventViewModel.getIsFiltered().value = true
+            eventViewModel.filterEvent(query ?: "")
+        } else
+            eventViewModel.getIsFiltered().value = false
+
         return true
     }
 
