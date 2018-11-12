@@ -17,7 +17,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
 @RunWith(RobolectricTestRunner::class)
-class DetailActivityViewModelTest: BaseTest(){
+class TeamViewModelTest: BaseTest(){
 
     @Rule
     @JvmField
@@ -31,7 +31,7 @@ class DetailActivityViewModelTest: BaseTest(){
     lateinit var viewModel:TeamViewModel
     val  homeID = "133604"
     val  awayID = "133602"
-    val eventId= "576570"
+    val teamID = "133604"
 
     override fun isMockServerEnabled() = true
 
@@ -65,11 +65,11 @@ class DetailActivityViewModelTest: BaseTest(){
         assertNotEquals("", viewModel.getListAwayTeam().value!!.teamLogo, "away team logo should not be null")
     }
 
-//    @Test
-//    @Throws(Exception::class)
-//    fun checkFavorite(){
-//        assertEquals(null, viewModel.getEventById().value, "favorite event should be null")
-//        viewModel.checkEvent(eventId)
-//        assertEquals(null, viewModel.getEventById().value, "favorite event should be null since db is droped on test")
-//    }
+    @Test
+    @Throws(Exception::class)
+    fun checkFavorite(){
+        assertEquals(null, viewModel.getAllTeam().value, "favorite event should be null")
+        viewModel.checkTeam(teamID)
+        assertEquals(null, viewModel.getAllTeam().value, "favorite event should be null since db is droped on test")
+    }
 }
