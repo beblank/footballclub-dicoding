@@ -14,11 +14,9 @@ class PlayerViewModel @Inject constructor(
 
     private val compositeDisposable = CompositeDisposable()
     private val allPlayer:MutableLiveData<List<Player>> = MutableLiveData()
-    private val playerDetail:MutableLiveData<Player> = MutableLiveData()
     private val playerError:MutableLiveData<String> = MutableLiveData()
 
     fun getAllPlayer() = allPlayer
-    fun getPlayerDetail() = playerDetail
     fun getPlayerError() = playerError
 
     fun getAllPlayerFromApi(team:String){
@@ -31,16 +29,4 @@ class PlayerViewModel @Inject constructor(
                     playerError.value = it.message
                 }))
     }
-
-    fun getPlayerFromApi(name:String){
-        compositeDisposable.add(playerRepository.getPlayerDetail(name)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    playerDetail.value = it.player[0]
-                },{
-                    playerError.value = it.message
-                }))
-    }
-
 }
