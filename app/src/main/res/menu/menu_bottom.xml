@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/prevMatchFragment"
+            android:id="@+id/eventFragment"
             android:icon="@drawable/ic_trophy"
             android:title="@string/prev_match" />
 
     <item
-            android:id="@+id/nextMatchFragment"
+            android:id="@+id/teamFragment"
             android:icon="@drawable/ic_soccer_field"
             android:title="@string/next_match" />
 

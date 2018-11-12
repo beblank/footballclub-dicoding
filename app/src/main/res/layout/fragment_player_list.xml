@@ -3,17 +3,17 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".ui.fragment.PrevMatchFragment">
+             tools:context=".ui.fragment.PlayerListFragment">
 
     <ProgressBar
-            android:id="@+id/progressbarPrevMatch"
+            android:id="@+id/progressbarPlayerList"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_centerInParent="true"/>
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvMatchPrev"
+            android:id="@+id/rvPlayerList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

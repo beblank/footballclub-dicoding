@@ -66,7 +66,7 @@ class ActivityTest {
         EspressoIdlingResource.increment()
 
         val recyclerView = onView(
-                allOf(withId(R.id.rvMatchPrev),
+                allOf(withId(R.id.rvMatch),
                         childAtPosition(
                                 withClassName(`is`("android.widget.FrameLayout")),
                                 1)))

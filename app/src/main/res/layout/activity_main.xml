@@ -13,16 +13,16 @@ android:orientation="vertical">
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:theme="@style/ToolbarTheme">
+        app:layout_constraintStart_toStartOf="parent">
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ToolbarTheme"
-            />
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:titleTextColor="@color/white"
+                android:elevation="4dp"
+                app:collapseIcon="@drawable/ic_arrow_back_white_24dp"
+                android:theme="@style/AppTheme.Toolbar"/>
 
     </android.support.design.widget.AppBarLayout>
 

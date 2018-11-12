@@ -14,11 +14,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.adit.footballclub.R
-import com.adit.footballclub.adapter.ClubAdapter
+import com.adit.footballclub.adapter.EventAdapter
+import com.adit.footballclub.adapter.TeamAdapter
 import com.adit.footballclub.entity.Events
+import com.adit.footballclub.entity.Team
 import com.adit.footballclub.ext.hide
 import com.adit.footballclub.ext.show
-import com.adit.footballclub.viewmodel.ActivityMainViewModel
+import com.adit.footballclub.utils.Const
+import com.adit.footballclub.viewmodel.EventViewModel
+import com.adit.footballclub.viewmodel.TeamViewModel
 import com.adit.footballclub.viewmodel.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_favorite.*
@@ -30,7 +34,8 @@ class FavoriteFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    lateinit var activityMainViewModel: ActivityMainViewModel
+    lateinit var eventViewModel: EventViewModel
+    lateinit var teamViewModel:TeamViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -45,33 +50,56 @@ class FavoriteFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        activityMainViewModel = ViewModelProviders.of(this, viewModelFactory)[ActivityMainViewModel::class.java]
-        activityMainViewModel.getListEvents().observe(this, Observer {
+        eventViewModel = ViewModelProviders.of(requireActivity(), viewModelFactory)[EventViewModel::class.java]
+        teamViewModel = ViewModelProviders.of(this, viewModelFactory)[TeamViewModel::class.java]
+        rvFav.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        eventViewModel.getListEvents().observe(this, Observer {
             if (it != null){
-                progressbarFavMatch.hide()
-                rvMatchFav.show()
-                initRV(it)
+                progressbarFav.hide()
+                rvFav.show()
+                setEventRV(it)
             }
         })
-        activityMainViewModel.getListEventsError().observe(this, Observer {
+        teamViewModel.getAllTeam().observe(this, Observer {
+            if (it != null){
+                progressbarFav.hide()
+                rvFav.show()
+                setTeamRV(it)
+            }
+        })
+        eventViewModel.getListEventsError().observe(this, Observer {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         })
-        progressbarFavMatch.show()
-        rvMatchFav.hide()
-        activityMainViewModel.getEventsfromDB()
+        teamViewModel.getAllTeamError().observe(this, Observer {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        })
+        eventViewModel.getSelectedTab().observe(this, Observer{
+            progressbarFav.show()
+            rvFav.hide()
+            if (it != null){
+                when (it){
+                    Const.eventTab -> eventViewModel.getEventsfromDB()
+                    Const.teamTab -> teamViewModel.getTeamfromDB()
+                }
+            }
+        })
     }
 
-    private fun initRV(it: List<Events>) {
-        Log.d("dodol", "$it")
-        rvMatchFav.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        val adapter = ClubAdapter(it)
+    private fun setEventRV(it: List<Events>) {
+        val adapter = EventAdapter(it)
         adapter.notifyDataSetChanged()
-        rvMatchFav.adapter = adapter
+        rvFav.adapter = adapter
+    }
+
+    private fun setTeamRV(it: List<Team>) {
+        val adapter = TeamAdapter(it)
+        adapter.notifyDataSetChanged()
+        rvFav.adapter = adapter
     }
 
     override fun onPause() {
         super.onPause()
-        activityMainViewModel.getListEvents().value = null
+        eventViewModel.getListEvents().value = null
 
     }
 }

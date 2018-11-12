@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">FootballClub</string>
     <string name="next_match">Next Match</string>
-    <string name="last_match">Last Match</string>
+    <string name="last_match">Past</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="detail_title">Match Detail</string>
-    <string name="main_title">Football Match Schedule</string>
+    <string name="main_title">Football Apps</string>
     <string name="vs">VS</string>
     <string name="goals">Goals</string>
     <string name="shots">Shots</string>
@@ -17,5 +17,23 @@
     <string name="defense">Defense</string>
     <string name="lineups">Lineups</string>
     <string name="favorite">Favorite</string>
-    <string name="prev_match">Prev Match</string>
+    <string name="search">Search</string>
+    <string name="prev_match">Last</string>
+    <string name="upcoming">Next</string>
+    <string name="overview">OVERVIEW</string>
+    <string name="players">PLAYERS</string>
+    <string name="matches">MATCHES</string>
+    <string name="teams">TEAMS</string>
+    <string name="height_m">Height (m)</string>
+    <string name="weight_kg">Weight (Kg)</string>
+
+    <array name="leagueArray">
+        <item id="1042">English Premier League</item>
+        <item>German Bundesliga</item>
+        <item>Italian Serie A</item>
+        <item>French Ligue 1</item>
+        <item>Spanish La Liga</item>
+        <item>Netherlands Eredivisie</item>
+    </array>
+
 </resources>
