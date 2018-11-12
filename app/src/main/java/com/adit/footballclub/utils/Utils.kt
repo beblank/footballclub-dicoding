@@ -34,5 +34,18 @@ class Utils{
             newFormat.timeZone = wib
             return newFormat.format(nf)
         }
+
+        fun dateTimeCal(date:String?, time:String?):Calendar{
+            var result = ""
+            val s = "$date $time"
+            if (date != null && time != null){
+                result = dateTimeParser(s, "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm")
+            }
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm",  Locale("id"))
+            val eventDate = sdf.parse(result)
+            val cal = Calendar.getInstance()
+            cal.time = eventDate
+            return cal
+        }
     }
 }
