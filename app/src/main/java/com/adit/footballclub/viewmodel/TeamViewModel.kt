@@ -122,7 +122,7 @@ class TeamViewModel @Inject constructor(
 
     fun filterTeam(filter:String){
         if (allTeams.value != null){
-            filteredTeam.value = allTeams.value!!.filter { team -> team.teamName!!.toLowerCase().contains(filter.toLowerCase()) }
+            filteredTeam.value = allTeams.value!!.filter { team -> team.teamName.toLowerCase().contains(filter.toLowerCase()) }
         }
 
     }
