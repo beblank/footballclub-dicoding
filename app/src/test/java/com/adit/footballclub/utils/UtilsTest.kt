@@ -15,7 +15,7 @@ class UtilsTest{
     fun testDateTimeGMT(){
         val date = "2018-11-10"
         val time = "17:30:00+00:00"
-        assertEquals("00:30:00", Utils.timeStringConverter(date, time))
+        assertEquals("00:30", Utils.timeStringConverter(date, time))
     }
 
     @Test
