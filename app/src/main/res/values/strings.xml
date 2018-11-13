@@ -26,6 +26,7 @@
     <string name="teams">TEAMS</string>
     <string name="height_m">Height (m)</string>
     <string name="weight_kg">Weight (Kg)</string>
+    <string name="team">Team</string>
 
     <array name="leagueArray">
         <item id="1042">English Premier League</item>
